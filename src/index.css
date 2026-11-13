@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
+    @apply transition-colors duration-300;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Ensure headings and text descenders (p, g, y, j, q) have full clearance and are never clipped */
+  h1, h2, h3, h4, h5, h6 {
+    overflow: visible;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .cursor-none-important { cursor: none !important; }
+
+  /* Glass pill */
+  .glass-pill {
+    @apply backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border border-neutral-200/60 dark:border-neutral-700/60;
+  }
+
+  /* Section scrollspy highlight */
+  .nav-item-active {
+    @apply text-neutral-900 dark:text-white font-medium;
+  }
+  .nav-item-muted {
+    @apply text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300;
+  }
+
+  /* Refined Perry Wang serif highlight treatment with silver-to-light-blue gradient & soft blue glow */
+  /* Descenders (p, g, y, j, q) and italic slants have dedicated padding/margin clearance to prevent clipping */
+  .highlight-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: baseline;
+    overflow: visible;
+    line-height: normal;
+    padding-bottom: 0.22em;
+    margin-bottom: -0.22em;
+    padding-right: 0.1em;
+    margin-right: -0.1em;
+    padding-left: 0.04em;
+    margin-left: -0.04em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    background: linear-gradient(135deg, #334155 0%, #0369a1 50%, #2563eb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .dark .highlight-serif {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 35%, #bae6fd 70%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(186, 230, 253, 0.4)) drop-shadow(0 0 28px rgba(147, 197, 253, 0.2));
+  }
+}
