@@ -22,8 +22,8 @@ export function About() {
       <main className="max-w-6xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[36px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
           {/* Circular Profile Image (left-aligned on mobile, centered on desktop) */}
-          <motion.div {...getMotionProps(0)} className="mb-6 sm:mb-8">
-            <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
+          <motion.div {...getMotionProps(0)} className="mb-7 sm:mb-9">
+            <div className="w-[118px] h-[118px] sm:w-44 sm:h-44 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
               <img
                 src="/assets/about/avatar.png"
                 alt="Abhijith V S"
