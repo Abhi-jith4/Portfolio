@@ -40,7 +40,7 @@ export function Home() {
 
           <motion.h1
             {...getMotionProps(0.14)}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5"
+            className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5 headline-depth"
           >
             I blend engineering
             <br />

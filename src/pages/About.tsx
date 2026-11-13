@@ -36,7 +36,7 @@ export function About() {
             {...getMotionProps(0.14)}
             className="max-w-4xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible"
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2 headline-depth">
               I'm passionate about bringing engineering and design together to create products that{' '}
               <span className="highlight-serif">empower people.</span>
             </h1>

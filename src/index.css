@@ -55,7 +55,16 @@
     @apply text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300;
   }
 
-  /* Refined Perry Wang serif highlight treatment with silver-to-light-blue gradient & soft blue glow */
+  /* Subtle headline shadow & depth (for homepage & about page main headlines) */
+  .headline-depth {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .headline-depth {
+    text-shadow: 0 2px 24px rgba(255, 255, 255, 0.12), 0 0 45px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Refined Perry Wang serif highlight treatment with softer, lighter silver-to-icy-blue gradient */
   /* Descenders (p, g, y, j, q) and italic slants have dedicated padding/margin clearance to prevent clipping */
   .highlight-serif {
     font-family: 'Playfair Display', Georgia, serif;
@@ -73,17 +82,67 @@
     margin-left: -0.04em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    background: linear-gradient(135deg, #334155 0%, #0369a1 50%, #2563eb 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #2563eb 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .dark .highlight-serif {
-    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 35%, #bae6fd 70%, #93c5fd 100%);
+    background: linear-gradient(180deg, #ffffff 10%, #f8fafc 35%, #e2e8f0 60%, #bae6fd 85%, #93c5fd 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 16px rgba(186, 230, 253, 0.4)) drop-shadow(0 0 28px rgba(147, 197, 253, 0.2));
+    filter: drop-shadow(0 0 14px rgba(186, 230, 253, 0.35)) drop-shadow(0 0 28px rgba(147, 197, 253, 0.12));
+  }
+
+  /* Theme-aware Glassmorphic / Neumorphic Pill Button (Dousan Miao style) */
+  .glass-button {
+    position: relative;
+    border-radius: 9999px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Light theme: Translucent pearl white with subtle inner gloss & soft elevation */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.88) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow:
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03),
+      0 4px 16px -2px rgba(0, 0, 0, 0.08),
+      0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    color: #1e293b;
+  }
+
+  .glass-button:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow:
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03),
+      0 6px 20px -2px rgba(0, 0, 0, 0.12),
+      0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .glass-button {
+    /* Dark theme: Translucent dark smoked glass with silver rim & inner depth */
+    background: linear-gradient(180deg, rgba(38, 38, 38, 0.75) 0%, rgba(23, 23, 23, 0.85) 50%, rgba(10, 10, 10, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
+      0 4px 20px -2px rgba(0, 0, 0, 0.7),
+      0 2px 6px 0 rgba(0, 0, 0, 0.5);
+    color: #f1f5f9;
+  }
+
+  .dark .glass-button:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow:
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
+      0 6px 24px -2px rgba(0, 0, 0, 0.85),
+      0 2px 8px 0 rgba(0, 0, 0, 0.6);
   }
 }
