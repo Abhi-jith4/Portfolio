@@ -55,15 +55,16 @@ export function VideoPlayer({ src, poster, className = '', accent = '#F97316' }:
       <AnimatePresence>
         {!playing && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[1px]"
           >
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               className="w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center shadow-xl shadow-black/50"
               style={{ background: accent }}
             >

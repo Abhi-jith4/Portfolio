@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -6,9 +6,9 @@ const dots = [0, 1, 2];
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
   const [loading, setLoading] = useState(false);
   const [displayLocation, setDisplayLocation] = useState(location);
-
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
@@ -17,7 +17,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       const t = setTimeout(() => {
         setDisplayLocation(location);
         setLoading(false);
-      }, 550);
+      }, 500);
       return () => clearTimeout(t);
     }
   }, [location, displayLocation]);
@@ -32,7 +32,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: 'easeOut' }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-neutral-950/95"
           >
             <div className="flex items-center gap-3 mb-3">
@@ -41,7 +41,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
                   key={i}
                   className="w-2 h-2 rounded-full bg-white/60"
                   animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.2 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 1.1, repeat: Infinity, delay: i * 0.22 }}
                 />
               ))}
             </div>
@@ -56,10 +56,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={displayLocation.pathname}
-          initial={{ opacity: 0, y: 12 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: 'easeOut' }}
         >
           {children}
         </motion.div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { X, Sun, Moon, Maximize2 } from 'lucide-react';
 import { projects } from '../content';
 import { SectionNav } from '../components/SectionNav';
@@ -109,6 +109,7 @@ export function Project() {
   const isMotorex = project.slug === 'motorex';
   const isAgriRover = project.slug === 'agrirover';
   const isMotorage = project.slug === 'motorage';
+  const shouldReduceMotion = useReducedMotion();
 
   const handleClose = () => {
     if (window.history.state && window.history.state.idx > 0) {
@@ -127,8 +128,9 @@ export function Project() {
       <div className="fixed top-5 right-5 sm:top-6 sm:right-8 z-50 flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
         <motion.button
           onClick={toggle}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ duration: 0.2 }}
           className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full glass-pill text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white shadow-md shadow-black/5 dark:shadow-black/20 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 cursor-pointer"
           aria-label="Toggle dark mode"
         >
@@ -137,8 +139,9 @@ export function Project() {
 
         <motion.button
           onClick={handleClose}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ duration: 0.2 }}
           className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full glass-pill text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white shadow-md shadow-black/5 dark:shadow-black/20 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 cursor-pointer"
           aria-label="Close project and return"
         >
@@ -152,9 +155,9 @@ export function Project() {
           <main className="w-full min-w-0">
             {/* ── OPENING SECTION (Compact Editorial Layout) ── */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: 'easeOut' }}
               className="mb-10 pt-4"
             >
               <div className="flex flex-wrap gap-2 mb-4">

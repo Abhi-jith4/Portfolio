@@ -8,7 +8,7 @@ export function CursorBubble() {
   const [clicked, setClicked] = useState(false);
   const isTouch = useRef(false);
 
-  const springCfg = { stiffness: 300, damping: 30 };
+  const springCfg = { stiffness: 220, damping: 28 };
   const x = useSpring(mouseX, springCfg);
   const y = useSpring(mouseY, springCfg);
 
@@ -19,7 +19,7 @@ export function CursorBubble() {
 
   const handleClick = useCallback(() => {
     setClicked(true);
-    setTimeout(() => setClicked(false), 400);
+    setTimeout(() => setClicked(false), 300);
   }, []);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ export function CursorBubble() {
             width: hovered ? 110 : 0,
             height: hovered ? 110 : 0,
             opacity: hovered ? 1 : 0,
-            scale: clicked ? 1.15 : 1,
+            scale: clicked ? 1.05 : 1,
           }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 28 }}
         >
           {hovered && (
             <motion.span

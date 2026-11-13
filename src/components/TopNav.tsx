@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 import { useDarkMode } from '../hooks/useDarkMode';
 
@@ -7,6 +7,7 @@ export function TopNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isDark, toggle } = useDarkMode();
+  const shouldReduceMotion = useReducedMotion();
 
   const isAbout = location.pathname === '/about' || location.pathname === '/info';
   // Only hide on project detail pages (project pages have their own dedicated top-right X and theme toggle)
@@ -16,9 +17,9 @@ export function TopNav() {
   return (
     <div className="fixed top-5 left-0 right-0 z-40 flex justify-center pointer-events-none">
       <motion.nav
-        initial={{ opacity: 0, y: -8 }}
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: 'easeOut' }}
         className="pointer-events-auto flex items-center gap-1 p-1 rounded-full glass-pill shadow-lg shadow-black/5 dark:shadow-black/30 backdrop-blur-md"
       >
         <button

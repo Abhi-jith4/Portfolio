@@ -6,66 +6,78 @@ import { projects } from '../content';
 export function Home() {
   const shouldReduceMotion = useReducedMotion();
 
+  const getTransition = (delay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.8,
+    delay: shouldReduceMotion ? 0 : delay,
+    ease: 'easeOut' as const,
+  });
+
+  const getMotionProps = (delay: number) => ({
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    transition: getTransition(delay),
+  });
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
       <CursorBubble />
 
       <main className="max-w-5xl mx-auto px-6 pt-32 pb-16">
         {/* Hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="mb-20"
-        >
+        <div className="mb-20">
           {/* Prominent Name & Professional Designation */}
-          <div className="flex flex-col mb-6 overflow-visible">
-            <motion.span
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight"
-            >
+          <motion.div
+            {...getMotionProps(0)}
+            className="flex flex-col mb-6 overflow-visible"
+          >
+            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight">
               Abhijith V S
-            </motion.span>
+            </span>
             <span className="text-sm sm:text-base md:text-lg font-medium text-neutral-500 dark:text-neutral-400 mt-1">
               Product Designer
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5">
+          <motion.h1
+            {...getMotionProps(0.14)}
+            className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5"
+          >
             I blend engineering
             <br />
             and design to create
             <br />
             <span className="highlight-serif">products people love.</span>
-          </h1>
-          <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible">
+          </motion.h1>
+
+          <motion.p
+            {...getMotionProps(0.28)}
+            className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
+          >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         {/* Project grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
-        </motion.div>
+        </div>
 
         {/* Homepage Footer with LinkedIn icon and Antigravity credit */}
-        <footer className="mt-12 sm:mt-16 pb-4 flex flex-col items-center justify-center gap-3 text-center">
+        <motion.footer
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.8, ease: 'easeOut' }}
+          className="mt-12 sm:mt-16 pb-4 flex flex-col items-center justify-center gap-3 text-center"
+        >
           <motion.a
             href="https://www.linkedin.com/in/abhijith-v-s-152105322"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ y: -2, scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            whileHover={{ y: -2, scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200/80 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/80 text-neutral-600 dark:text-neutral-300 hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:border-neutral-300 dark:hover:border-neutral-700 shadow-sm transition-colors"
             aria-label="LinkedIn profile"
           >
@@ -76,7 +88,7 @@ export function Home() {
           <p className="text-xs text-neutral-400 dark:text-neutral-500 font-medium tracking-normal">
             &copy; 2026 Abhijith V S. Designed &amp; Built with Antigravity
           </p>
-        </footer>
+        </motion.footer>
       </main>
     </div>
   );

@@ -1,21 +1,23 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export function Dock() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.4, ease: 'easeOut' }}
+        transition={{ delay: shouldReduceMotion ? 0 : 0.6, duration: shouldReduceMotion ? 0 : 0.7, ease: 'easeOut' }}
         className="pointer-events-auto flex items-center gap-1 px-4 py-2 rounded-full glass-pill shadow-lg shadow-black/5 dark:shadow-black/30"
       >
         <motion.a
           href="https://www.linkedin.com/in/abhijith-v-s-152105322"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ y: -3, scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          whileHover={{ y: -2, scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="flex items-center justify-center w-9 h-9 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-colors"
           aria-label="LinkedIn profile"
         >

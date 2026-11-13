@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
 import type { ProjectData } from '../content/types';
 
 interface ProjectCardProps {
@@ -9,15 +10,28 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Set comfortable, slower playback rate for UI previews
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+  }, [project.coverMedia]);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1 + index * 0.06, duration: 0.5, ease: 'easeOut' }}
+      transition={{
+        delay: shouldReduceMotion ? 0 : 0.42 + index * 0.1,
+        duration: shouldReduceMotion ? 0 : 0.8,
+        ease: 'easeOut',
+      }}
       onClick={() => navigate(`/projects/${project.slug}`)}
       data-cursor-hover
-      className="group relative overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 cursor-none border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1 flex flex-col h-full"
+      className="group relative overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 cursor-none border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-400 ease-out hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1 flex flex-col h-full"
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
@@ -27,20 +41,24 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="relative w-full aspect-video overflow-hidden bg-neutral-200 dark:bg-neutral-800 shrink-0">
         {project.coverMedia.type === 'video' ? (
           <video
+            ref={videoRef}
             src={project.coverMedia.src}
             poster={project.coverMedia.poster}
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            onLoadedMetadata={(e) => {
+              e.currentTarget.playbackRate = 0.75;
+            }}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
             aria-label={`${project.title} demo video`}
           />
         ) : (
           <img
             src={project.coverMedia.src}
             alt={`${project.title} cover`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
             loading="lazy"
           />
         )}
@@ -79,7 +97,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
       {/* Hover accent glow */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"
+        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ease-out pointer-events-none"
         style={{ background: `radial-gradient(circle at 50% 0%, ${project.accent}, transparent 70%)` }}
       />
     </motion.div>

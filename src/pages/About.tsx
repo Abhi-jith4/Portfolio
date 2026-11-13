@@ -1,42 +1,60 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { CopyEmail } from '../components/CopyEmail';
 
 export function About() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const getTransition = (delay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.8,
+    delay: shouldReduceMotion ? 0 : delay,
+    ease: 'easeOut' as const,
+  });
+
+  const getMotionProps = (delay: number) => ({
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    transition: getTransition(delay),
+  });
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300">
       <main className="max-w-6xl mx-auto px-6 pt-24 sm:pt-32 pb-20 sm:pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="flex flex-col items-start sm:items-center"
-        >
+        <div className="flex flex-col items-start sm:items-center">
           {/* Circular Profile Image (left-aligned on mobile, centered on desktop) */}
-          <div className="mb-6 sm:mb-8">
-            <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden transition-transform hover:scale-105 duration-300">
+          <motion.div {...getMotionProps(0)} className="mb-6 sm:mb-8">
+            <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
               <img
                 src="/assets/about/avatar.png"
                 alt="Abhijith V S"
                 className="w-full h-full object-cover"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Headline (left-aligned on mobile, centered on desktop) */}
-          <div className="max-w-4xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible">
+          <motion.div
+            {...getMotionProps(0.14)}
+            className="max-w-4xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible"
+          >
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2">
               I'm passionate about bringing engineering and design together to create products that{' '}
               <span className="highlight-serif">empower people.</span>
             </h1>
-          </div>
+          </motion.div>
 
           {/* Copy Email Action (left-aligned on mobile, centered on desktop) */}
-          <div className="flex justify-start sm:justify-center mb-10 sm:mb-12 w-full">
+          <motion.div
+            {...getMotionProps(0.28)}
+            className="flex justify-start sm:justify-center mb-10 sm:mb-12 w-full"
+          >
             <CopyEmail />
-          </div>
+          </motion.div>
 
           {/* Biography Container */}
-          <div className="max-w-3xl w-full text-left sm:text-center overflow-visible">
+          <motion.div
+            {...getMotionProps(0.4)}
+            className="max-w-3xl w-full text-left sm:text-center overflow-visible"
+          >
             {/* Subtle Section Label: ABOUT ME */}
             <div className="flex items-center justify-start sm:justify-center gap-2 mb-4 text-xs font-semibold tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
               <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-400" aria-hidden="true" />
@@ -57,8 +75,8 @@ export function About() {
                 Outside of work, you can usually find me playing football, hanging out with friends, or exploring new places together.
               </p>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </main>
     </div>
   );

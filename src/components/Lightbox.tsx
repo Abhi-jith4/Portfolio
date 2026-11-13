@@ -46,8 +46,9 @@ export function Lightbox({ image, onClose }: LightboxProps) {
               e.stopPropagation();
               onClose();
             }}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="fixed top-5 right-5 sm:top-6 sm:right-8 z-[110] w-11 h-11 flex items-center justify-center rounded-full glass-pill text-white hover:text-white bg-neutral-900/80 border border-neutral-700/60 shadow-xl transition-colors cursor-pointer"
             aria-label="Close enlarged preview"
           >
@@ -56,10 +57,10 @@ export function Lightbox({ image, onClose }: LightboxProps) {
 
           {/* Centered Image Container */}
           <motion.div
-            initial={{ scale: 0.94, opacity: 0 }}
+            initial={{ scale: 0.97, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.94, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            exit={{ scale: 0.97, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
             className="flex flex-col items-center max-w-full max-h-full cursor-default"
           >
