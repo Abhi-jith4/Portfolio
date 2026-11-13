@@ -1,9 +1,10 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
 import { CursorBubble } from '../components/CursorBubble';
 import { projects } from '../content';
 
 export function Home() {
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
@@ -19,9 +20,14 @@ export function Home() {
         >
           {/* Prominent Name & Professional Designation */}
           <div className="flex flex-col mb-6 overflow-visible">
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight">
+            <motion.span
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight"
+            >
               Abhijith V S
-            </span>
+            </motion.span>
             <span className="text-sm sm:text-base md:text-lg font-medium text-neutral-500 dark:text-neutral-400 mt-1">
               Product Designer
             </span>
