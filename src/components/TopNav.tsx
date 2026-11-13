@@ -24,22 +24,38 @@ export function TopNav() {
       >
         <button
           onClick={() => navigate('/')}
-          className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+          className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             !isAbout
               ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm'
               : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
           }`}
         >
+          {!isAbout && (
+            <motion.span
+              layoutId="active-nav-indicator"
+              transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 32 }}
+              className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 sm:w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)] pointer-events-none"
+              aria-hidden="true"
+            />
+          )}
           Work
         </button>
         <button
           onClick={() => navigate('/about')}
-          className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+          className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             isAbout
               ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm'
               : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
           }`}
         >
+          {isAbout && (
+            <motion.span
+              layoutId="active-nav-indicator"
+              transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 32 }}
+              className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 sm:w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)] pointer-events-none"
+              aria-hidden="true"
+            />
+          )}
           Info
         </button>
         <div className="w-px h-4 bg-neutral-200 dark:bg-neutral-700/80 mx-1" />
