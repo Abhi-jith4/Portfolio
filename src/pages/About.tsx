@@ -17,8 +17,9 @@ export function About() {
   });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300">
-      <main className="max-w-6xl mx-auto px-6 pt-24 sm:pt-32 pb-20 sm:pb-24">
+    <div className="min-h-screen bg-[#f0f2f5] dark:bg-black sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
+      {/* Main Content: Inset Rounded Container on Mobile, Standard Editorial Layout on Desktop */}
+      <main className="max-w-6xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[36px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
           {/* Circular Profile Image (left-aligned on mobile, centered on desktop) */}
           <motion.div {...getMotionProps(0)} className="mb-6 sm:mb-8">
@@ -42,10 +43,10 @@ export function About() {
             </h1>
           </motion.div>
 
-          {/* Copy Email Action (left-aligned on mobile, centered on desktop) */}
+          {/* Copy Email Action (hidden on mobile, centered on desktop) */}
           <motion.div
             {...getMotionProps(0.28)}
-            className="flex justify-start sm:justify-center mb-10 sm:mb-12 w-full"
+            className="hidden sm:flex justify-center mb-12 w-full"
           >
             <CopyEmail />
           </motion.div>

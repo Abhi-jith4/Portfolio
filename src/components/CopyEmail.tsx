@@ -14,14 +14,18 @@ export function CopyEmail() {
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // fallback
-      const ta = document.createElement('textarea');
-      ta.value = EMAIL;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = EMAIL;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // clipboard failure: do not show copied
+      }
     }
   };
 
@@ -31,7 +35,7 @@ export function CopyEmail() {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="glass-button relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium select-none cursor-pointer"
+      className="glass-button relative inline-flex items-center justify-center gap-2 px-5 py-2.5 min-w-[136px] text-sm font-medium select-none cursor-pointer"
       aria-label="Copy email address"
     >
       {/* Specular Diagonal Sheen (Dousan Miao style) */}
@@ -40,26 +44,27 @@ export function CopyEmail() {
         <div className="absolute top-0 left-4 right-4 h-[1px] bg-gradient-to-r from-transparent via-white/60 dark:via-white/30 to-transparent pointer-events-none" />
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         {copied ? (
           <motion.span
             key="check"
-            initial={{ opacity: 0, y: 3 }}
+            initial={{ opacity: 0, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -3 }}
-            transition={{ duration: 0.15 }}
-            className="relative z-10 flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium"
+            exit={{ opacity: 0, y: -2 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="relative z-10 flex items-center justify-center gap-2 text-[#0284c7] dark:text-[#9CCBFF] font-medium"
           >
-            <Check size={15} /> Copied!
+            <Check size={15} className="text-[#0284c7] dark:text-[#9CCBFF]" />
+            <span>Copied</span>
           </motion.span>
         ) : (
           <motion.span
             key="mail"
-            initial={{ opacity: 0, y: 3 }}
+            initial={{ opacity: 0, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -3 }}
-            transition={{ duration: 0.15 }}
-            className="relative z-10 flex items-center gap-2 text-neutral-800 dark:text-neutral-100"
+            exit={{ opacity: 0, y: -2 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="relative z-10 flex items-center justify-center gap-2 text-neutral-800 dark:text-neutral-100 font-medium"
           >
             <Mail size={15} className="text-neutral-600 dark:text-neutral-300" />
             <span>Copy email</span>

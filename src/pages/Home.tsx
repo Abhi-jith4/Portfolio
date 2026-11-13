@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
 import { CursorBubble } from '../components/CursorBubble';
+import { CopyEmail } from '../components/CopyEmail';
 import { projects } from '../content';
 
 export function Home() {
@@ -19,12 +20,13 @@ export function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
+    <div className="min-h-screen bg-[#f0f2f5] dark:bg-black sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300 cursor-default">
       <CursorBubble />
 
-      <main className="max-w-5xl mx-auto px-6 pt-32 pb-16">
+      {/* Main Content: Inset Rounded Container on Mobile, Standard Editorial Layout on Desktop */}
+      <main className="max-w-5xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[36px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-16 transition-colors duration-300">
         {/* Hero */}
-        <div className="mb-20">
+        <div className="mb-14 sm:mb-20">
           {/* Prominent Name & Professional Designation */}
           <motion.div
             {...getMotionProps(0)}
@@ -55,6 +57,14 @@ export function Home() {
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
           </motion.p>
+
+          {/* Mobile Copy Email Button (Dousan Miao mobile layout) */}
+          <motion.div
+            {...getMotionProps(0.35)}
+            className="flex sm:hidden mt-6 overflow-visible"
+          >
+            <CopyEmail />
+          </motion.div>
         </div>
 
         {/* Project grid */}
