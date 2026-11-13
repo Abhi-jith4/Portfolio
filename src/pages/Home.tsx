@@ -9,7 +9,7 @@ export function Home() {
     <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
       <CursorBubble />
 
-      <main className="max-w-5xl mx-auto px-6 pt-32 pb-32">
+      <main className="max-w-5xl mx-auto px-6 pt-32 pb-16">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -52,7 +52,7 @@ export function Home() {
         </motion.div>
 
         {/* Homepage Footer with LinkedIn icon and Antigravity credit */}
-        <footer className="mt-28 pt-12 pb-8 border-t border-neutral-100 dark:border-neutral-900 flex flex-col items-center justify-center gap-3 text-center">
+        <footer className="mt-12 sm:mt-16 pb-4 flex flex-col items-center justify-center gap-3 text-center">
           <motion.a
             href="https://www.linkedin.com/in/abhijith-v-s-152105322"
             target="_blank"
@@ -68,7 +68,7 @@ export function Home() {
             </svg>
           </motion.a>
           <p className="text-xs text-neutral-400 dark:text-neutral-500 font-medium tracking-normal">
-            Designed &amp; Built with Antigravity
+            &copy; 2026 Abhijith V S. Designed &amp; Built with Antigravity
           </p>
         </footer>
       </main>
