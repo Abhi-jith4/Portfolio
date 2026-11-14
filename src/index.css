@@ -17,7 +17,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
+    @apply bg-[#FAF9F6] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F3];
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
   }
@@ -41,17 +41,17 @@
 @layer utilities {
   .cursor-none-important { cursor: none !important; }
 
-  /* Glass pill */
+  /* Glass pill navigation */
   .glass-pill {
-    @apply backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border border-neutral-200/60 dark:border-neutral-700/60;
+    @apply backdrop-blur-xl bg-[#F0EFEC]/85 dark:bg-[#222222]/85 border border-black/[0.08] dark:border-white/[0.12];
   }
 
   /* Section scrollspy highlight */
   .nav-item-active {
-    @apply text-neutral-900 dark:text-white font-medium;
+    @apply text-[#171717] dark:text-[#F5F5F3] font-medium;
   }
   .nav-item-muted {
-    @apply text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300;
+    @apply text-neutral-400 dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3];
   }
 
   /* Subtle headline shadow & depth (for homepage & about page main headlines) */
@@ -60,7 +60,7 @@
   }
 
   .dark .headline-depth {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
   }
 
   /* Refined Perry Wang serif highlight treatment with softer, lighter silver-to-icy-blue gradient */
@@ -81,18 +81,18 @@
     margin-left: -0.04em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #2563eb 100%);
+    background: linear-gradient(135deg, #171717 0%, #2b3544 50%, #1e3a8a 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .dark .highlight-serif {
-    background: linear-gradient(180deg, #ffffff 10%, #f8fafc 35%, #e2e8f0 60%, #bae6fd 85%, #93c5fd 100%);
+    background: linear-gradient(180deg, #FFFFFF 15%, #F5F5F3 40%, #E2E8F0 65%, #C7D2FE 88%, #A5B4FC 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px rgba(186, 230, 253, 0.3));
+    filter: drop-shadow(0 0 16px rgba(199, 210, 254, 0.22));
   }
 
   /* Theme-aware Glassmorphic / Neumorphic Pill Button (Dousan Miao style) */
@@ -104,15 +104,15 @@
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* Light theme: Translucent pearl white with subtle inner gloss & soft elevation */
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.88) 100%);
+    /* Light theme: warm off-white surface with subtle inner gloss & soft elevation */
+    background: linear-gradient(180deg, rgba(240, 239, 236, 0.96) 0%, rgba(234, 232, 227, 0.88) 100%);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow:
       inset 0 1px 1px 0 rgba(255, 255, 255, 1),
       inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03),
       0 4px 16px -2px rgba(0, 0, 0, 0.08),
       0 1px 3px 0 rgba(0, 0, 0, 0.04);
-    color: #1e293b;
+    color: #171717;
   }
 
   .glass-button:hover {
@@ -125,47 +125,47 @@
   }
 
   .dark .glass-button {
-    /* Dark theme: Translucent dark smoked glass with silver rim & inner depth */
-    background: linear-gradient(180deg, rgba(38, 38, 38, 0.75) 0%, rgba(23, 23, 23, 0.85) 50%, rgba(10, 10, 10, 0.92) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* Dark theme: refined deep charcoal with silver rim & inner depth */
+    background: linear-gradient(180deg, rgba(38, 38, 38, 0.85) 0%, rgba(28, 28, 28, 0.92) 50%, rgba(20, 20, 20, 0.96) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     box-shadow:
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
-      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
-      0 4px 20px -2px rgba(0, 0, 0, 0.7),
-      0 2px 6px 0 rgba(0, 0, 0, 0.5);
-    color: #f1f5f9;
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
+      0 4px 20px -2px rgba(0, 0, 0, 0.6),
+      0 2px 6px 0 rgba(0, 0, 0, 0.4);
+    color: #F5F5F3;
   }
 
   .dark .glass-button:hover {
-    border-color: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.28);
     box-shadow:
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.38),
-      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
-      0 6px 24px -2px rgba(0, 0, 0, 0.85),
-      0 2px 8px 0 rgba(0, 0, 0, 0.6);
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.32),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
+      0 6px 24px -2px rgba(0, 0, 0, 0.75),
+      0 2px 8px 0 rgba(0, 0, 0, 0.5);
   }
 
   /* Refined Dousan Miao style View Project cursor bubble */
   .cursor-bubble-glass {
-    background: rgba(255, 255, 255, 0.76);
+    background: rgba(240, 239, 236, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow:
       0 12px 36px -4px rgba(0, 0, 0, 0.12),
       0 4px 12px -2px rgba(0, 0, 0, 0.06),
       inset 0 1px 1.5px 0 rgba(255, 255, 255, 1);
-    color: #111827;
+    color: #171717;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .dark .cursor-bubble-glass {
-    background: rgba(20, 20, 20, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(26, 26, 26, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow:
       0 16px 40px 0 rgba(0, 0, 0, 0.55),
       inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
       inset 0 -1px 2px 0 rgba(0, 0, 0, 0.45);
-    color: #ffffff;
+    color: #F5F5F3;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }

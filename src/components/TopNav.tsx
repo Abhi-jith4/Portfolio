@@ -38,7 +38,7 @@ export function TopNav() {
         initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-auto relative flex items-center gap-1 p-1 rounded-full glass-pill shadow-lg shadow-black/5 dark:shadow-black/30 backdrop-blur-md"
+        className="pointer-events-auto relative flex items-center gap-1 p-1 rounded-full glass-pill shadow-lg shadow-black/5 dark:shadow-black/40 backdrop-blur-xl"
       >
         {/* Floating indicator above the pill — positioned absolutely within nav */}
         {indicatorX !== null && (
@@ -53,7 +53,7 @@ export function TopNav() {
                 : { type: 'spring', stiffness: 380, damping: 30, mass: 0.9 }
             }
           >
-            <span className="block w-5 h-[2px] rounded-full bg-neutral-500/80 dark:bg-white/90 shadow-[0_0_5px_1px_rgba(100,100,100,0.3)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.6),0_0_2px_rgba(255,255,255,0.9)]" />
+            <span className="block w-5 h-[2px] rounded-full bg-[#171717]/85 dark:bg-white shadow-[0_0_5px_1px_rgba(0,0,0,0.2)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.7),0_0_2px_rgba(255,255,255,0.95)]" />
           </motion.span>
         )}
 
@@ -62,8 +62,8 @@ export function TopNav() {
           onClick={() => navigate('/')}
           className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             !isAbout
-              ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm'
-              : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+              ? 'bg-[#171717] dark:bg-[#F5F5F3] text-[#F5F5F3] dark:text-[#171717] shadow-sm'
+              : 'text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3]'
           }`}
         >
           Work
@@ -74,17 +74,17 @@ export function TopNav() {
           onClick={() => navigate('/about')}
           className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             isAbout
-              ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm'
-              : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+              ? 'bg-[#171717] dark:bg-[#F5F5F3] text-[#F5F5F3] dark:text-[#171717] shadow-sm'
+              : 'text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3]'
           }`}
         >
           Info
         </button>
 
-        <div className="w-px h-4 bg-neutral-200 dark:bg-neutral-700/80 mx-1" />
+        <div className="w-px h-4 bg-black/10 dark:bg-white/10 mx-1" />
         <button
           onClick={toggle}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-full text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
           aria-label="Toggle dark mode"
         >
           {isDark ? <Sun size={15} /> : <Moon size={15} />}

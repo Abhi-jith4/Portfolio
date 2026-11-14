@@ -35,7 +35,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={handleCardClick}
-      className="group relative overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 cursor-none border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-400 ease-out hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1 flex flex-col h-full select-none"
+      className="group relative overflow-hidden rounded-[22px] bg-[#F0EFEC] dark:bg-[#1F1F1F] cursor-none border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.18] transition-all duration-400 ease-out shadow-sm hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/60 hover:-translate-y-1 flex flex-col h-full select-none"
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
@@ -46,7 +46,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       }}
     >
       {/* Cover media */}
-      <div className="relative w-full aspect-video overflow-hidden bg-neutral-200 dark:bg-neutral-800 shrink-0">
+      <div className="relative w-full aspect-video overflow-hidden bg-[#E5E3DE] dark:bg-[#181818] shrink-0 rounded-t-[21px]">
         {project.coverMedia.type === 'video' ? (
           <video
             ref={videoRef}
@@ -79,17 +79,17 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       {/* Card info */}
-      <div className="p-5 flex flex-col flex-1 justify-between">
+      <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
           <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-bold text-lg leading-snug text-neutral-900 dark:text-white tracking-tight">
+            <h3 className="font-bold text-lg leading-snug text-[#171717] dark:text-[#F5F5F3] tracking-tight">
               {project.title}
             </h3>
-            <span className="text-xs text-neutral-400 dark:text-neutral-500 shrink-0 mt-0.5">
+            <span className="text-xs text-[#888888] dark:text-[#777777] shrink-0 mt-0.5 font-medium">
               {project.year}
             </span>
           </div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+          <p className="text-sm text-[#5C5C5C] dark:text-[#A5A5A5] leading-relaxed mb-4">
             {project.subtitle}
           </p>
         </div>
@@ -97,7 +97,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#E2DFD8] dark:bg-[#282828] text-[#4A4A4A] dark:text-[#CCCCCC]"
             >
               {tag}
             </span>
@@ -105,9 +105,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </div>
 
-      {/* Hover accent glow */}
+      {/* Restrained hover accent glow */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ease-out pointer-events-none"
+        className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 ease-out pointer-events-none"
         style={{ background: `radial-gradient(circle at 50% 0%, ${project.accent}, transparent 70%)` }}
       />
     </motion.div>
