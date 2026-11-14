@@ -8,23 +8,23 @@ export function Home() {
   const shouldReduceMotion = useReducedMotion();
 
   const getTransition = (delay: number) => ({
-    duration: shouldReduceMotion ? 0 : 0.8,
+    duration: shouldReduceMotion ? 0 : 0.45,
     delay: shouldReduceMotion ? 0 : delay,
     ease: 'easeOut' as const,
   });
 
   const getMotionProps = (delay: number) => ({
-    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
     animate: { opacity: 1, y: 0 },
     transition: getTransition(delay),
   });
 
   return (
-    <div className="min-h-screen bg-[#f0f2f5] dark:bg-black sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300 cursor-default">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
       <CursorBubble />
 
-      {/* Main Content: Inset Rounded Container on Mobile, Standard Editorial Layout on Desktop */}
-      <main className="max-w-5xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[36px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-16 transition-colors duration-300">
+      {/* Main Content: Direct on page background on mobile, standard layout on desktop */}
+      <main className="max-w-5xl mx-auto px-6 pt-24 sm:pt-32 pb-16">
         {/* Hero */}
         <div className="mb-14 sm:mb-20">
           {/* Prominent Name & Professional Designation */}
@@ -41,7 +41,7 @@ export function Home() {
           </motion.div>
 
           <motion.h1
-            {...getMotionProps(0.14)}
+            {...getMotionProps(0.06)}
             className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5 headline-depth"
           >
             I blend engineering
@@ -52,7 +52,7 @@ export function Home() {
           </motion.h1>
 
           <motion.p
-            {...getMotionProps(0.28)}
+            {...getMotionProps(0.12)}
             className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
@@ -60,7 +60,7 @@ export function Home() {
 
           {/* Mobile Copy Email Button (Dousan Miao mobile layout) */}
           <motion.div
-            {...getMotionProps(0.35)}
+            {...getMotionProps(0.16)}
             className="flex sm:hidden mt-6 overflow-visible"
           >
             <CopyEmail />

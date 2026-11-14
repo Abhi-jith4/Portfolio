@@ -5,13 +5,13 @@ export function About() {
   const shouldReduceMotion = useReducedMotion();
 
   const getTransition = (delay: number) => ({
-    duration: shouldReduceMotion ? 0 : 0.8,
+    duration: shouldReduceMotion ? 0 : 0.45,
     delay: shouldReduceMotion ? 0 : delay,
     ease: 'easeOut' as const,
   });
 
   const getMotionProps = (delay: number) => ({
-    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
     animate: { opacity: 1, y: 0 },
     transition: getTransition(delay),
   });
@@ -19,7 +19,7 @@ export function About() {
   return (
     <div className="min-h-screen bg-[#f0f2f5] dark:bg-black sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
       {/* Main Content: Inset Rounded Container on Mobile, Standard Editorial Layout on Desktop */}
-      <main className="max-w-6xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[36px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
+      <main className="max-w-6xl mx-auto bg-white dark:bg-[#141414] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.07] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
           {/* Circular Profile Image (left-aligned on mobile, centered on desktop) */}
           <motion.div {...getMotionProps(0)} className="mb-7 sm:mb-9">
@@ -34,7 +34,7 @@ export function About() {
 
           {/* Headline (left-aligned on mobile, centered on desktop) */}
           <motion.div
-            {...getMotionProps(0.14)}
+            {...getMotionProps(0.06)}
             className="max-w-4xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible"
           >
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2 headline-depth">
@@ -45,7 +45,7 @@ export function About() {
 
           {/* Copy Email Action (hidden on mobile, centered on desktop) */}
           <motion.div
-            {...getMotionProps(0.28)}
+            {...getMotionProps(0.12)}
             className="hidden sm:flex justify-center mb-12 w-full"
           >
             <CopyEmail />
@@ -53,7 +53,7 @@ export function About() {
 
           {/* Biography Container */}
           <motion.div
-            {...getMotionProps(0.4)}
+            {...getMotionProps(0.18)}
             className="max-w-3xl w-full text-left sm:text-center overflow-visible"
           >
             {/* Subtle Section Label: ABOUT ME */}

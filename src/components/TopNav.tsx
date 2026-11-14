@@ -31,12 +31,13 @@ export function TopNav() {
           }`}
         >
           {!isAbout && (
-            <motion.span
-              layoutId="active-nav-indicator"
-              transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 32 }}
-              className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 sm:w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)] pointer-events-none"
-              aria-hidden="true"
-            />
+            <div className="absolute -top-1 inset-x-0 flex justify-center pointer-events-none" aria-hidden="true">
+              <motion.span
+                layoutId="active-nav-indicator"
+                transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 450, damping: 35 }}
+                className="w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)]"
+              />
+            </div>
           )}
           Work
         </button>
@@ -49,12 +50,13 @@ export function TopNav() {
           }`}
         >
           {isAbout && (
-            <motion.span
-              layoutId="active-nav-indicator"
-              transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 32 }}
-              className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 sm:w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)] pointer-events-none"
-              aria-hidden="true"
-            />
+            <div className="absolute -top-1 inset-x-0 flex justify-center pointer-events-none" aria-hidden="true">
+              <motion.span
+                layoutId="active-nav-indicator"
+                transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 450, damping: 35 }}
+                className="w-5 h-[2px] rounded-full bg-neutral-400/90 dark:bg-white shadow-[0_0_6px_rgba(150,150,150,0.4)] dark:shadow-[0_0_8px_rgba(255,255,255,0.75),0_0_2px_rgba(255,255,255,0.9)]"
+              />
+            </div>
           )}
           Info
         </button>

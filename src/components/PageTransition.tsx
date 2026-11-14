@@ -21,18 +21,18 @@ export function PageTransition({ children, locationKey }: PageTransitionProps) {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={locationKey}
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         exit={
           shouldReduceMotion
             ? { opacity: 0 }
-            : { opacity: 0, y: -6, transition: { duration: 0.18, ease: 'easeIn' } }
+            : { opacity: 0, y: -4, transition: { duration: 0.1, ease: 'easeIn' } }
         }
         transition={{
-          duration: shouldReduceMotion ? 0 : 0.45,
+          duration: shouldReduceMotion ? 0 : 0.18,
           ease: 'easeOut',
         }}
-        className="w-full min-h-screen"
+        className="w-full min-h-screen will-change-[opacity,transform]"
       >
         {children}
       </motion.div>

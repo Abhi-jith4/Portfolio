@@ -17,8 +17,7 @@
   }
 
   body {
-    @apply bg-[#f0f2f5] dark:bg-black sm:bg-white sm:dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
-    @apply transition-colors duration-300;
+    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
   }
@@ -61,7 +60,7 @@
   }
 
   .dark .headline-depth {
-    text-shadow: 0 2px 24px rgba(255, 255, 255, 0.12), 0 0 45px rgba(255, 255, 255, 0.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
   /* Refined Perry Wang serif highlight treatment with softer, lighter silver-to-icy-blue gradient */
@@ -93,7 +92,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 14px rgba(186, 230, 253, 0.35)) drop-shadow(0 0 28px rgba(147, 197, 253, 0.12));
+    filter: drop-shadow(0 0 10px rgba(186, 230, 253, 0.3));
   }
 
   /* Theme-aware Glassmorphic / Neumorphic Pill Button (Dousan Miao style) */
