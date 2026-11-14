@@ -145,3 +145,27 @@
       0 2px 8px 0 rgba(0, 0, 0, 0.6);
   }
 }
+
+/* GPU acceleration hints for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Prevent layout shift during page transitions */
+[data-framer-motion-layout-id] {
+  will-change: transform;
+}
+
+/* Smooth dark mode color transitions — but NOT on transforms/filters to avoid lag */
+body, main, .glass-pill, .glass-button {
+  transition-property: background-color, border-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+/* Prevent backdrop-filter from triggering on hover animations */
+@media (prefers-reduced-motion: reduce) {
+  .will-change-transform {
+    will-change: auto;
+  }
+}

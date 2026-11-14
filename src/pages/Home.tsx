@@ -1,35 +1,38 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
-import { CursorBubble } from '../components/CursorBubble';
 import { CopyEmail } from '../components/CopyEmail';
 import { projects } from '../content';
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Determine mobile vs desktop stagger based on viewport width
+function isMobile() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 640;
+}
+
 export function Home() {
   const shouldReduceMotion = useReducedMotion();
+  const mobile = isMobile();
 
-  const getTransition = (delay: number) => ({
-    duration: shouldReduceMotion ? 0 : 0.45,
-    delay: shouldReduceMotion ? 0 : delay,
-    ease: 'easeOut' as const,
-  });
-
-  const getMotionProps = (delay: number) => ({
-    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
+  const makeFade = (delay: number, extraDuration?: number) => ({
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: mobile ? 10 : 16 },
     animate: { opacity: 1, y: 0 },
-    transition: getTransition(delay),
+    transition: {
+      duration: shouldReduceMotion ? 0 : (extraDuration ?? (mobile ? 0.5 : 0.65)),
+      delay: shouldReduceMotion ? 0 : (mobile ? delay * 0.7 : delay),
+      ease: EASE,
+    },
   });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 cursor-default">
-      <CursorBubble />
-
-      {/* Main Content: Direct on page background on mobile, standard layout on desktop */}
+    <div className="min-h-screen bg-white dark:bg-neutral-950">
       <main className="max-w-5xl mx-auto px-6 pt-24 sm:pt-32 pb-16">
         {/* Hero */}
         <div className="mb-14 sm:mb-20">
-          {/* Prominent Name & Professional Designation */}
+          {/* Name & title — first to appear */}
           <motion.div
-            {...getMotionProps(0)}
+            {...makeFade(0.05)}
             className="flex flex-col mb-6 overflow-visible"
           >
             <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight">
@@ -40,8 +43,9 @@ export function Home() {
             </span>
           </motion.div>
 
+          {/* Main headline — second */}
           <motion.h1
-            {...getMotionProps(0.06)}
+            {...makeFade(0.14, mobile ? 0.55 : 0.72)}
             className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5 headline-depth"
           >
             I blend engineering
@@ -51,34 +55,39 @@ export function Home() {
             <span className="highlight-serif">products people love.</span>
           </motion.h1>
 
+          {/* Description — third */}
           <motion.p
-            {...getMotionProps(0.12)}
+            {...makeFade(0.26)}
             className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
           </motion.p>
 
-          {/* Mobile Copy Email Button (Dousan Miao mobile layout) */}
+          {/* Copy Email (mobile only) — fourth */}
           <motion.div
-            {...getMotionProps(0.16)}
+            {...makeFade(0.34)}
             className="flex sm:hidden mt-6 overflow-visible"
           >
             <CopyEmail />
           </motion.div>
         </div>
 
-        {/* Project grid */}
+        {/* Project grid — staggered */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </div>
 
-        {/* Homepage Footer with LinkedIn icon and Antigravity credit */}
+        {/* Footer */}
         <motion.footer
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.8, ease: 'easeOut' }}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.8,
+            delay: shouldReduceMotion ? 0 : (mobile ? 0.7 : 1.0),
+            ease: EASE,
+          }}
           className="mt-12 sm:mt-16 pb-4 flex flex-col items-center justify-center gap-3 text-center"
         >
           <motion.a

@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import type { ProjectData } from '../content/types';
 
 interface ProjectCardProps {
@@ -8,10 +8,24 @@ interface ProjectCardProps {
   index: number;
 }
 
+const BUBBLE_SIZE = 110;
+const HALF = BUBBLE_SIZE / 2;
+
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  // Bubble state: position relative to image container + visibility
+  const [bubblePos, setBubblePos] = useState({ x: 0, y: 0 });
+  const [isHoveringImage, setIsHoveringImage] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  // Detect touch/coarse pointer — disable bubble on mobile
+  const isCoarsePointer = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+  );
 
   // Set comfortable, slower playback rate for UI previews
   useEffect(() => {
@@ -20,25 +34,76 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     }
   }, [project.coverMedia]);
 
+  // Track pointer position relative to the image container
+  const handlePointerMove = useCallback((e: PointerEvent) => {
+    const container = imageContainerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    // clientX/Y are viewport-relative; getBoundingClientRect() is also viewport-relative
+    // so the subtraction gives element-relative coordinates — correct across all scroll positions
+    const rawX = e.clientX - rect.left;
+    const rawY = e.clientY - rect.top;
+
+    // Clamp so the bubble circle never overflows the image container
+    const clampedX = Math.max(HALF, Math.min(rect.width - HALF, rawX));
+    const clampedY = Math.max(HALF, Math.min(rect.height - HALF, rawY));
+
+    setBubblePos({ x: clampedX, y: clampedY });
+  }, []);
+
+  const handlePointerEnter = useCallback(() => {
+    if (isCoarsePointer.current) return;
+    setIsHoveringImage(true);
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    setIsHoveringImage(false);
+  }, []);
+
+  const handleCardClick = useCallback(() => {
+    setClicked(true);
+    setTimeout(() => setClicked(false), 280);
+    navigate(`/projects/${project.slug}`);
+  }, [navigate, project.slug]);
+
+  // Attach pointer events directly to the image container element
+  useEffect(() => {
+    const container = imageContainerRef.current;
+    if (!container || isCoarsePointer.current) return;
+
+    container.addEventListener('pointermove', handlePointerMove, { passive: true });
+    container.addEventListener('pointerenter', handlePointerEnter);
+    container.addEventListener('pointerleave', handlePointerLeave);
+
+    return () => {
+      container.removeEventListener('pointermove', handlePointerMove);
+      container.removeEventListener('pointerenter', handlePointerEnter);
+      container.removeEventListener('pointerleave', handlePointerLeave);
+    };
+  }, [handlePointerMove, handlePointerEnter, handlePointerLeave]);
+
   return (
     <motion.div
       initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        delay: shouldReduceMotion ? 0 : 0.42 + index * 0.1,
-        duration: shouldReduceMotion ? 0 : 0.8,
-        ease: 'easeOut',
+        delay: shouldReduceMotion ? 0 : 0.38 + index * 0.09,
+        duration: shouldReduceMotion ? 0 : 0.65,
+        ease: [0.22, 1, 0.36, 1],
       }}
-      onClick={() => navigate(`/projects/${project.slug}`)}
-      data-cursor-hover
+      onClick={handleCardClick}
       className="group relative overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 cursor-none border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-400 ease-out hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1 flex flex-col h-full"
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/projects/${project.slug}`); }}
     >
-      {/* Cover media */}
-      <div className="relative w-full aspect-video overflow-hidden bg-neutral-200 dark:bg-neutral-800 shrink-0">
+      {/* Cover media — bubble is scoped inside here, clipped by overflow-hidden */}
+      <div
+        ref={imageContainerRef}
+        className="relative w-full aspect-video overflow-hidden bg-neutral-200 dark:bg-neutral-800 shrink-0"
+      >
         {project.coverMedia.type === 'video' ? (
           <video
             ref={videoRef}
@@ -68,6 +133,42 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           className="absolute bottom-0 left-0 right-0 h-0.5 opacity-80"
           style={{ background: project.accent }}
         />
+
+        {/* VIEW PROJECT bubble — lives INSIDE the image container.
+            Positioned element-relative, clipped by parent overflow-hidden.
+            Never bleeds onto description or neighboring cards. */}
+        {!isCoarsePointer.current && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute z-10 flex items-center justify-center rounded-full select-none"
+            style={{
+              width: BUBBLE_SIZE,
+              height: BUBBLE_SIZE,
+              left: bubblePos.x - HALF,
+              top: bubblePos.y - HALF,
+              background: 'rgba(255,255,255,0.13)',
+              boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.28)',
+              willChange: 'transform, opacity',
+            }}
+            animate={{
+              scale: isHoveringImage ? 1 : 0,
+              opacity: isHoveringImage ? 1 : 0,
+              ...(clicked && isHoveringImage ? { scale: 1.08 } : {}),
+            }}
+            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+          >
+            <motion.span
+              animate={{
+                opacity: isHoveringImage ? 1 : 0,
+                scale: isHoveringImage ? 1 : 0.85,
+              }}
+              transition={{ duration: 0.14, ease: 'easeOut' }}
+              className="text-[11px] font-semibold tracking-wide text-white uppercase whitespace-nowrap"
+            >
+              View project
+            </motion.span>
+          </motion.div>
+        )}
       </div>
 
       {/* Card info */}
@@ -103,4 +204,3 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     </motion.div>
   );
 }
-
