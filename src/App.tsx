@@ -4,6 +4,7 @@ import { About } from './pages/About';
 import { Project } from './pages/Project';
 import { TopNav } from './components/TopNav';
 import { PageTransition } from './components/PageTransition';
+import { CursorBubble } from './components/CursorBubble';
 
 export default function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ export default function App() {
   return (
     <>
       <TopNav />
+      <CursorBubble />
       <PageTransition locationKey={location.pathname}>
         {element}
       </PageTransition>
