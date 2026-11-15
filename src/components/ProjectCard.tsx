@@ -96,9 +96,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}
       onPointerLeave={handlePointerLeave}
-      className={`group relative rounded-[20px] sm:rounded-[22px] bg-white dark:bg-[#151515] border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700/80 transition-all duration-300 ease-out cursor-none flex flex-col h-full select-none hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/50 ${
-        isPressed ? 'scale-[0.99]' : ''
-      }`}
+      className={`group relative rounded-[20px] sm:rounded-[22px] bg-white dark:bg-[#151515] border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700/80 transition-all duration-300 ease-out cursor-none flex flex-col h-full select-none hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/50 ${isPressed ? 'scale-[0.99]' : ''
+        }`}
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
@@ -110,18 +109,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     >
       {/* ── Ambient Project-Specific Glow (Desktop Hover & Mobile Touch/Press) ── */}
       <div
-        className={`absolute -inset-1 rounded-[24px] sm:rounded-[26px] blur-xl transition-opacity duration-300 ease-out pointer-events-none -z-10 ${
-          isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-        }`}
+        className={`absolute -inset-1 rounded-[24px] sm:rounded-[26px] blur-xl transition-opacity duration-300 ease-out pointer-events-none -z-10 ${isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+          }`}
         style={{ background: accentInfo.glow }}
         aria-hidden="true"
       />
 
       {/* Subtle border highlight on hover and touch/press */}
       <div
-        className={`absolute inset-0 rounded-[20px] sm:rounded-[22px] transition-opacity duration-300 ease-out pointer-events-none ${
-          isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-        }`}
+        className={`absolute inset-0 rounded-[20px] sm:rounded-[22px] transition-opacity duration-300 ease-out pointer-events-none ${isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+          }`}
         style={{
           boxShadow: `inset 0 0 0 1px ${accentInfo.border}`,
         }}
