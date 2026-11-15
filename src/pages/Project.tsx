@@ -112,10 +112,20 @@ export function Project() {
   const shouldReduceMotion = useReducedMotion();
 
   const handleClose = () => {
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1);
+    if (typeof document !== 'undefined' && 'startViewTransition' in document && !shouldReduceMotion) {
+      (document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+        if (window.history.state && window.history.state.idx > 0) {
+          navigate(-1);
+        } else {
+          navigate('/');
+        }
+      });
     } else {
-      navigate('/');
+      if (window.history.state && window.history.state.idx > 0) {
+        navigate(-1);
+      } else {
+        navigate('/');
+      }
     }
   };
 
@@ -258,48 +268,88 @@ export function Project() {
               )}
             </motion.div>
 
-            {/* ── HERO BANNER (MediSync App Showcase) ── */}
+            {/* ── HERO BANNER (Browser-Window-Style App Showcase) ── */}
             {isMediSync && (
-              <div className="mb-12 sm:mb-14">
-                <div
-                  onClick={() =>
-                    setActiveLightbox({
-                      src: project.coverMedia.src,
-                      alt: 'MediSync Mobile App Suite',
-                      caption: 'MediSync React Native mobile app — real-time dosing control, scheduling, and vitals monitoring',
-                    })
-                  }
-                  className="group relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 shadow-sm cursor-zoom-in"
-                >
-                  <img
-                    src={project.coverMedia.src}
-                    alt="MediSync Mobile App Suite"
-                    className="w-full h-auto max-h-[560px] object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-                  />
-                  <div className="absolute top-4 right-4 p-2 rounded-full glass-pill text-neutral-700 dark:text-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={16} />
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-12 sm:mb-14"
+              >
+                <div className="rounded-[18px] sm:rounded-[22px] overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#151515] shadow-lg shadow-black/5 dark:shadow-black/40 p-2 sm:p-2.5">
+                  <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-950 shadow-inner flex flex-col">
+                    <div className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                      </div>
+                      <span className="text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
+                        Healthcare Mobile App Suite
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        setActiveLightbox({
+                          src: project.coverMedia.src,
+                          alt: 'MediSync Mobile App Suite',
+                          caption: 'MediSync React Native mobile app — real-time dosing control, scheduling, and vitals monitoring',
+                        })
+                      }
+                      className="group relative cursor-zoom-in"
+                    >
+                      <img
+                        src={project.coverMedia.src}
+                        alt="MediSync Mobile App Suite"
+                        className="w-full h-auto max-h-[560px] object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+                      />
+                      <div className="absolute top-4 right-4 p-2 rounded-full glass-pill text-neutral-700 dark:text-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Maximize2 size={16} />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-xs text-neutral-400 dark:text-neutral-500 text-center mt-2.5 font-medium">
                   MediSync React Native mobile application — dosing schedule, live telemetry & vitals monitoring
                 </p>
-              </div>
+              </motion.div>
             )}
 
             {/* Cover media for video projects (AgriRover, Motorex, Motorage) */}
             {!isMediSync && project.coverMedia.type === 'video' && (
-              <div className="mb-16 rounded-2xl overflow-hidden border border-neutral-100 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 aspect-video shadow-sm">
-                <video
-                  src={project.coverMedia.src}
-                  poster={project.coverMedia.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                  aria-label={`${project.title} demo video`}
-                />
-              </div>
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-16"
+              >
+                <div className="rounded-[18px] sm:rounded-[22px] overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#151515] shadow-lg shadow-black/5 dark:shadow-black/40 p-2 sm:p-2.5">
+                  <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-950 shadow-inner flex flex-col">
+                    <div className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                      </div>
+                      <span className="text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
+                        Live Demonstration
+                      </span>
+                    </div>
+                    <div className="aspect-video w-full overflow-hidden">
+                      <video
+                        src={project.coverMedia.src}
+                        poster={project.coverMedia.poster}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                        aria-label={`${project.title} demo video`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             )}
 
             {/* ── OVERVIEW ── */}

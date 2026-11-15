@@ -1,12 +1,37 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import type { ProjectData } from '../content/types';
 
 interface ProjectCardProps {
   project: ProjectData;
   index: number;
 }
+
+// Project-specific accent glow colors and labels inspired by Perry Wang's showcase style
+const PROJECT_ACCENTS: Record<string, { glow: string; border: string; label: string }> = {
+  agrirover: {
+    glow: 'rgba(249, 115, 22, 0.22)', // Subtle orange glow
+    border: 'rgba(249, 115, 22, 0.55)',
+    label: 'IoT Mobile App',
+  },
+  motorex: {
+    glow: 'rgba(16, 185, 129, 0.22)', // Subtle green glow
+    border: 'rgba(16, 185, 129, 0.55)',
+    label: 'Autonomous HMI',
+  },
+  motorage: {
+    glow: 'rgba(0, 245, 106, 0.22)', // Subtle green glow
+    border: 'rgba(0, 245, 106, 0.55)',
+    label: 'Electric Vehicle Dashboard',
+  },
+  medisync: {
+    glow: 'rgba(139, 92, 246, 0.22)', // Subtle purple glow
+    border: 'rgba(139, 92, 246, 0.55)',
+    label: 'Healthcare App Suite',
+  },
+};
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const navigate = useNavigate();
@@ -20,69 +45,127 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     }
   }, [project.coverMedia]);
 
+  const accentInfo = PROJECT_ACCENTS[project.slug] || {
+    glow: 'rgba(255, 255, 255, 0.15)',
+    border: 'rgba(255, 255, 255, 0.35)',
+    label: 'Case Study',
+  };
+
   const handleCardClick = () => {
-    navigate(`/projects/${project.slug}`);
+    if (typeof document !== 'undefined' && 'startViewTransition' in document && !shouldReduceMotion) {
+      (document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+        navigate(`/projects/${project.slug}`);
+      });
+    } else {
+      navigate(`/projects/${project.slug}`);
+    }
   };
 
   return (
     <motion.div
       data-project-card="true"
-      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        delay: shouldReduceMotion ? 0 : 0.38 + index * 0.09,
+        delay: shouldReduceMotion ? 0 : 0.35 + index * 0.08,
         duration: shouldReduceMotion ? 0 : 0.65,
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={handleCardClick}
-      className="group relative overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 cursor-none border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-400 ease-out hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1 flex flex-col h-full select-none"
+      className="group relative rounded-[20px] sm:rounded-[22px] bg-white dark:bg-[#151515] border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700/80 transition-all duration-400 ease-out cursor-none flex flex-col h-full select-none hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/50"
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-          navigate(`/projects/${project.slug}`);
+          handleCardClick();
         }
       }}
     >
-      {/* Cover media */}
-      <div className="relative w-full aspect-video overflow-hidden bg-neutral-200 dark:bg-neutral-800 shrink-0">
-        {project.coverMedia.type === 'video' ? (
-          <video
-            ref={videoRef}
-            src={project.coverMedia.src}
-            poster={project.coverMedia.poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            onLoadedMetadata={(e) => {
-              e.currentTarget.playbackRate = 0.75;
-            }}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-            aria-label={`${project.title} demo video`}
-          />
-        ) : (
-          <img
-            src={project.coverMedia.src}
-            alt={`${project.title} cover`}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-            loading="lazy"
-          />
-        )}
+      {/* ── Ambient Project-Specific Hover Glow (Perry Wang style) ── */}
+      <div
+        className="absolute -inset-1 rounded-[24px] sm:rounded-[26px] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 ease-out pointer-events-none -z-10"
+        style={{ background: accentInfo.glow }}
+        aria-hidden="true"
+      />
 
-        {/* Accent bar at bottom */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-0.5 opacity-80"
-          style={{ background: project.accent }}
-        />
+      {/* Subtle border highlight on hover */}
+      <div
+        className="absolute inset-0 rounded-[20px] sm:rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out pointer-events-none"
+        style={{
+          boxShadow: `inset 0 0 0 1px ${accentInfo.border}`,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ── Browser-Window-Style Inset Preview Canvas ── */}
+      <div className="p-2 sm:p-2.5 pb-0 sm:pb-0">
+        <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-100 dark:bg-neutral-900/90 flex flex-col shadow-sm">
+          {/* Slim Browser Top Bar with 3 Window Control Dots */}
+          <div className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
+            {/* Minimal window control dots */}
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#FF5F56] transition-colors duration-300" />
+              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#FFBD2E] transition-colors duration-300" />
+              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#27C93F] transition-colors duration-300" />
+            </div>
+
+            {/* Subtle understated domain tag */}
+            <span className="text-[10px] sm:text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
+              {accentInfo.label}
+            </span>
+          </div>
+
+          {/* Media Viewport */}
+          <div className="relative w-full aspect-video overflow-hidden bg-neutral-950">
+            {project.coverMedia.type === 'video' ? (
+              <video
+                ref={videoRef}
+                src={project.coverMedia.src}
+                poster={project.coverMedia.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                onLoadedMetadata={(e) => {
+                  e.currentTarget.playbackRate = 0.75;
+                }}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                aria-label={`${project.title} preview video`}
+              />
+            ) : (
+              <img
+                src={project.coverMedia.src}
+                alt={`${project.title} cover`}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            )}
+
+            {/* Subtle View Project hover indicator overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+              <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1.5 group-hover:translate-y-0">
+                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium glass-pill text-white shadow-xl shadow-black/40 backdrop-blur-md border border-white/20">
+                  View Project
+                  <ArrowUpRight size={13} className="text-white/80" />
+                </span>
+              </div>
+            </div>
+
+            {/* Accent strip at bottom */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[2px] opacity-80 group-hover:opacity-100 transition-opacity"
+              style={{ background: project.accent }}
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Card info */}
-      <div className="p-5 flex flex-col flex-1 justify-between">
+      {/* ── Card Information Area (Content stays completely stable) ── */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
         <div>
           <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-bold text-lg leading-snug text-neutral-900 dark:text-white tracking-tight">
+            <h3 className="font-bold text-lg sm:text-[19px] leading-snug text-neutral-900 dark:text-white tracking-tight">
               {project.title}
             </h3>
             <span className="text-xs text-neutral-400 dark:text-neutral-500 shrink-0 mt-0.5 font-medium">
@@ -97,19 +180,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200/50 dark:border-white/[0.04]"
             >
               {tag}
             </span>
           ))}
         </div>
       </div>
-
-      {/* Hover accent glow */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ease-out pointer-events-none"
-        style={{ background: `radial-gradient(circle at 50% 0%, ${project.accent}, transparent 70%)` }}
-      />
     </motion.div>
   );
 }
