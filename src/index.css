@@ -17,7 +17,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-[#0A0A0A] sm:dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
+    @apply bg-[#FAF9F6] dark:bg-[#0A0A0A] sm:bg-[#FAF9F6] sm:dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
   }
@@ -81,18 +81,18 @@
     margin-left: -0.04em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #2563eb 100%);
+    background: linear-gradient(135deg, #334155 0%, #0369a1 50%, #2563eb 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .dark .highlight-serif {
-    background: linear-gradient(180deg, #ffffff 10%, #f8fafc 35%, #e2e8f0 60%, #bae6fd 85%, #93c5fd 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 35%, #bae6fd 70%, #93c5fd 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px rgba(186, 230, 253, 0.3));
+    filter: drop-shadow(0 0 16px rgba(186, 230, 253, 0.4)) drop-shadow(0 0 28px rgba(147, 197, 253, 0.2));
   }
 
   /* Theme-aware Glassmorphic / Neumorphic Pill Button (Dousan Miao style) */

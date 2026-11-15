@@ -25,7 +25,7 @@ const ms: ProjectData = {
     'Wired the dispenser electronics (stepper carousel & peristaltic pump) and vitals sensors (MAX30102 & AD8232).',
     'Tested end-to-end communication between the two independent ESP32 microcontrollers and the mobile app.',
   ],
-  team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel Das',
+  team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel',
   timeline: 'Completed May 2026',
   status: 'Prototype Completed · App v1.0',
   stats: [

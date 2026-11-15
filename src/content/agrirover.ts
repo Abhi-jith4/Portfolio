@@ -21,7 +21,7 @@ const ag: ProjectData = {
     'Created visual indicators for system status, connectivity, and alerts.',
     'Developed the app and tested communication between the app and rover hardware.',
   ],
-  team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel Das',
+  team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel',
   timeline: 'Completed October 2026',
   status: 'Prototype Completed · Field Testing Pending',
   stats: [

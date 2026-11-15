@@ -9,10 +9,10 @@ export function Home() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] sm:bg-white dark:bg-[#0A0A0A] sm:dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Mobile subtle top radial glow (Perry Wang inspired), strictly hidden on desktop */}
+    <div className="min-h-screen bg-[#FAF9F6] dark:bg-[#0A0A0A] sm:bg-[#FAF9F6] sm:dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden">
+      {/* Mobile subtle top radial glow (Perry Wang inspired), strictly dark-mode only on mobile */}
       <div
-        className="sm:hidden pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        className="hidden dark:block sm:dark:hidden pointer-events-none fixed inset-0 z-0 overflow-hidden"
         aria-hidden="true"
       >
         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[360px] bg-[radial-gradient(ellipse_100%_350px_at_50%_0%,rgba(36,36,36,0.8)_0%,rgba(23,23,23,0.5)_50%,transparent_100%)] blur-2xl" />
@@ -81,7 +81,7 @@ export function Home() {
               delay: shouldReduceMotion ? 0 : 0.4,
               ease: EASE,
             }}
-            className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
+            className="text-lg text-neutral-600 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
           </motion.p>
