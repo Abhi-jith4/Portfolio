@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { useRef, useEffect, useState } from 'react';
 import type { ProjectData } from '../content/types';
 
 interface ProjectCardProps {
@@ -9,26 +8,26 @@ interface ProjectCardProps {
   index: number;
 }
 
-// Project-specific accent glow colors and labels inspired by Perry Wang's showcase style
+// Project-specific accent glow colors and labels
 const PROJECT_ACCENTS: Record<string, { glow: string; border: string; label: string }> = {
   agrirover: {
     glow: 'rgba(249, 115, 22, 0.22)', // Subtle orange glow
-    border: 'rgba(249, 115, 22, 0.55)',
+    border: '#F97316', // Crisp orange accent border
     label: 'IoT Mobile App',
   },
   motorex: {
-    glow: 'rgba(229, 57, 53, 0.20)', // Subtle red ambient glow matching dashboard interface
+    glow: 'rgba(229, 57, 53, 0.20)', // Subtle red ambient glow
     border: '#E53935', // Refined red border (~#E53935)
     label: 'Autonomous HMI',
   },
   motorage: {
     glow: 'rgba(0, 245, 106, 0.22)', // Subtle green glow
-    border: 'rgba(0, 245, 106, 0.55)',
+    border: '#00F56A', // Crisp green accent border
     label: 'Electric Vehicle Dashboard',
   },
   medisync: {
     glow: 'rgba(139, 92, 246, 0.22)', // Subtle purple glow
-    border: 'rgba(139, 92, 246, 0.55)',
+    border: '#8B5CF6', // Crisp purple accent border
     label: 'Healthcare App Suite',
   },
 };
@@ -37,6 +36,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPressed, setIsPressed] = useState(false);
 
   // Set comfortable, slower playback rate for UI previews
   useEffect(() => {
@@ -61,6 +61,25 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     }
   };
 
+  // Touch and pointer interactions for mobile press / long-press feedback
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch' || e.button === 0) {
+      setIsPressed(true);
+    }
+  };
+
+  const handlePointerUp = () => {
+    setIsPressed(false);
+  };
+
+  const handlePointerCancel = () => {
+    setIsPressed(false);
+  };
+
+  const handlePointerLeave = () => {
+    setIsPressed(false);
+  };
+
   return (
     <motion.div
       data-project-card="true"
@@ -73,7 +92,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={handleCardClick}
-      className="group relative rounded-[20px] sm:rounded-[22px] bg-white dark:bg-[#151515] border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700/80 transition-all duration-400 ease-out cursor-none flex flex-col h-full select-none hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/50"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
+      onPointerLeave={handlePointerLeave}
+      className={`group relative rounded-[20px] sm:rounded-[22px] bg-white dark:bg-[#151515] border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700/80 transition-all duration-300 ease-out cursor-none flex flex-col h-full select-none hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/50 ${
+        isPressed ? 'scale-[0.99]' : ''
+      }`}
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
@@ -83,16 +108,20 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         }
       }}
     >
-      {/* ── Ambient Project-Specific Hover Glow (Perry Wang style) ── */}
+      {/* ── Ambient Project-Specific Glow (Desktop Hover & Mobile Touch/Press) ── */}
       <div
-        className="absolute -inset-1 rounded-[24px] sm:rounded-[26px] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 ease-out pointer-events-none -z-10"
+        className={`absolute -inset-1 rounded-[24px] sm:rounded-[26px] blur-xl transition-opacity duration-300 ease-out pointer-events-none -z-10 ${
+          isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+        }`}
         style={{ background: accentInfo.glow }}
         aria-hidden="true"
       />
 
-      {/* Subtle border highlight on hover */}
+      {/* Subtle border highlight on hover and touch/press */}
       <div
-        className="absolute inset-0 rounded-[20px] sm:rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out pointer-events-none"
+        className={`absolute inset-0 rounded-[20px] sm:rounded-[22px] transition-opacity duration-300 ease-out pointer-events-none ${
+          isPressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+        }`}
         style={{
           boxShadow: `inset 0 0 0 1px ${accentInfo.border}`,
         }}
@@ -102,16 +131,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       {/* ── Browser-Window-Style Inset Preview Canvas ── */}
       <div className="p-2 sm:p-2.5 pb-0 sm:pb-0">
         <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-100 dark:bg-neutral-900/90 flex flex-col shadow-sm">
-          {/* Slim Browser Top Bar with 3 Window Control Dots */}
-          <div className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
-            {/* Minimal window control dots */}
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#FF5F56] transition-colors duration-300" />
-              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#FFBD2E] transition-colors duration-300" />
-              <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-[#27C93F] transition-colors duration-300" />
-            </div>
-
-            {/* Subtle understated domain tag */}
+          {/* Clean Browser Top Bar (No decorative dots, preserving frame & category badge) */}
+          <div className="px-3 py-2 sm:px-3.5 sm:py-2 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-end">
             <span className="text-[10px] sm:text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
               {accentInfo.label}
             </span>
@@ -142,16 +163,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 loading="lazy"
               />
             )}
-
-            {/* Subtle View Project hover indicator overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1.5 group-hover:translate-y-0">
-                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium glass-pill text-white shadow-xl shadow-black/40 backdrop-blur-md border border-white/20">
-                  View Project
-                  <ArrowUpRight size={13} className="text-white/80" />
-                </span>
-              </div>
-            </div>
 
             {/* Accent strip at bottom */}
             <div

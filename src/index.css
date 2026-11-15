@@ -207,7 +207,4 @@ body, main, .glass-pill, .glass-button {
   [data-project-card]:hover {
     transform: none !important;
   }
-  [data-project-card] .group-hover\:opacity-100 {
-    opacity: 0 !important;
-  }
 }

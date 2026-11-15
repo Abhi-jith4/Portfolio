@@ -278,12 +278,7 @@ export function Project() {
               >
                 <div className="rounded-[18px] sm:rounded-[22px] overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#151515] shadow-lg shadow-black/5 dark:shadow-black/40 p-2 sm:p-2.5">
                   <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-950 shadow-inner flex flex-col">
-                    <div className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                      </div>
+                    <div className="px-3.5 py-2 sm:px-4 sm:py-2 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-end">
                       <span className="text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
                         Healthcare Mobile App Suite
                       </span>
@@ -325,12 +320,7 @@ export function Project() {
               >
                 <div className="rounded-[18px] sm:rounded-[22px] overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#151515] shadow-lg shadow-black/5 dark:shadow-black/40 p-2 sm:p-2.5">
                   <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-950 shadow-inner flex flex-col">
-                    <div className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                        <span className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                      </div>
+                    <div className="px-3.5 py-2 sm:px-4 sm:py-2 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-end">
                       <span className="text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
                         Live Demonstration
                       </span>
