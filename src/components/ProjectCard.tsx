@@ -8,6 +8,9 @@ interface ProjectCardProps {
   index: number;
 }
 
+// Smooth ease-out curve inspired by Dousan Miao's refined portfolio motion
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 // Project-specific accent glow colors and labels
 const PROJECT_ACCENTS: Record<string, { glow: string; border: string; label: string }> = {
   agrirover: {
@@ -83,13 +86,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <motion.div
       data-project-card="true"
-      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-20px' }}
+      viewport={{ once: true, margin: '-30px' }}
       transition={{
-        delay: shouldReduceMotion ? 0 : (index < 2 ? 0.52 + index * 0.1 : 0.12 + (index % 2) * 0.1),
-        duration: shouldReduceMotion ? 0 : 0.45,
-        ease: [0.22, 1, 0.36, 1],
+        duration: shouldReduceMotion ? 0 : 0.55,
+        delay: shouldReduceMotion ? 0 : (index % 2) * 0.1,
+        ease: EASE,
       }}
       onClick={handleCardClick}
       onPointerDown={handlePointerDown}
