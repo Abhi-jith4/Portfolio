@@ -631,12 +631,12 @@ export function Project() {
                                   caption: `${screen.title} — ${screen.description}`,
                                 })
                               }
-                              className="group relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-sm cursor-zoom-in"
+                              className="group relative rounded-2xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 bg-[#F0F0F0] dark:bg-neutral-900 shadow-sm cursor-zoom-in p-2.5 sm:p-3.5 flex items-center justify-center"
                             >
                               <img
                                 src={screen.src}
                                 alt={screen.alt}
-                                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                                className="w-full h-auto rounded-xl max-h-[640px] object-contain transition-transform duration-300 group-hover:scale-[1.01]"
                                 loading="lazy"
                               />
                               <div className="absolute top-3 right-3 p-1.5 rounded-full glass-pill text-neutral-700 dark:text-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -823,9 +823,9 @@ export function Project() {
                                   caption: `${screen.title} — ${screen.description}`,
                                 })
                               }
-                              className={`group relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-zoom-in ${
+                              className={`group relative rounded-2xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 shadow-sm cursor-zoom-in ${
                                 isAgriRover
-                                  ? 'bg-neutral-900/60 p-2 sm:p-3 flex items-center justify-center'
+                                  ? 'bg-[#F0F0F0] dark:bg-neutral-900/60 p-2 sm:p-3 flex items-center justify-center'
                                   : 'bg-neutral-950'
                               }`}
                             >
@@ -986,12 +986,12 @@ export function Project() {
                                 caption: `${item.title}: ${item.subtitle} — ${item.description}`,
                               })
                             }
-                            className="group relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 mb-4 cursor-zoom-in max-h-56 flex items-center justify-center"
+                            className="group relative rounded-xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 bg-[#F0F0F0] dark:bg-neutral-950 mb-4 cursor-zoom-in max-h-56 flex items-center justify-center p-2"
                           >
                             <img
                               src={item.imageSrc}
                               alt={item.title}
-                              className="w-full h-auto max-h-56 object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                              className="w-full h-auto max-h-56 rounded-lg object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
                               loading="lazy"
                             />
                             <div className="absolute top-2.5 right-2.5 p-1.5 rounded-full glass-pill text-neutral-700 dark:text-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1031,12 +1031,12 @@ export function Project() {
                             caption: s.caption,
                           })
                         }
-                        className="relative rounded-xl overflow-hidden border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 mb-2 shadow-sm cursor-zoom-in"
+                        className="relative rounded-xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 bg-[#F0F0F0] dark:bg-neutral-900 mb-2 shadow-sm cursor-zoom-in p-2 flex items-center justify-center"
                       >
                         <img
                           src={s.src}
                           alt={s.alt}
-                          className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.01]"
+                          className="w-full h-auto rounded-lg transition-transform duration-300 group-hover:scale-[1.01]"
                           loading="lazy"
                         />
                         <div className="absolute top-3 right-3 p-1.5 rounded-full glass-pill text-neutral-700 dark:text-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity">
