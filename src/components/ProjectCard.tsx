@@ -28,7 +28,7 @@ const PROJECT_ACCENTS: Record<string, { glow: string; border: string; label: str
   medisync: {
     glow: 'rgba(139, 92, 246, 0.22)', // Subtle purple glow
     border: '#8B5CF6', // Crisp purple accent border
-    label: 'Healthcare App Suite',
+    label: 'Remote Healthcare Application',
   },
 };
 

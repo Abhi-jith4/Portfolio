@@ -280,7 +280,7 @@ export function Project() {
                   <div className="rounded-xl sm:rounded-[14px] overflow-hidden border border-neutral-200/70 dark:border-white/[0.06] bg-neutral-950 shadow-inner flex flex-col">
                     <div className="px-3.5 py-2 sm:px-4 sm:py-2 bg-neutral-100/90 dark:bg-[#1B1B1B]/90 border-b border-neutral-200/60 dark:border-white/[0.05] flex items-center justify-end">
                       <span className="text-[10.5px] font-medium tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
-                        Healthcare Mobile App Suite
+                        Remote Healthcare Application
                       </span>
                     </div>
                     <div
