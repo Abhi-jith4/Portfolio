@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
-import { CopyEmail } from '../components/CopyEmail';
 import { projects } from '../content';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -85,20 +84,6 @@ export function Home() {
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
           </motion.p>
-
-          {/* 5. Mobile Copy Email Action */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: shouldReduceMotion ? 0 : 0.4,
-              delay: shouldReduceMotion ? 0 : 0.48,
-              ease: EASE,
-            }}
-            className="flex sm:hidden mt-6 overflow-visible"
-          >
-            <CopyEmail />
-          </motion.div>
         </div>
 
         {/* Project grid: Cards animate individually with progressive stagger */}
