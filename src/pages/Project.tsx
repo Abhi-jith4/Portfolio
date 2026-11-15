@@ -97,7 +97,7 @@ export function Project() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F6] dark:bg-[#171717]">
+      <div className="min-h-screen flex items-center justify-center bg-[#F8F7F4] dark:bg-[#111111]">
         <p className="text-neutral-500">Project not found.</p>
       </div>
     );

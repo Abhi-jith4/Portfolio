@@ -64,9 +64,9 @@ export function CopyEmail() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -2 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="relative z-10 flex items-center justify-center gap-2 text-[#171717] dark:text-[#F5F5F3] font-medium"
+            className="relative z-10 flex items-center justify-center gap-2 text-[#171717] dark:text-[#F5F5F5] font-medium"
           >
-            <Mail size={15} className="text-[#555555] dark:text-[#A5A5A5]" />
+            <Mail size={15} className="text-[#555555] dark:text-[#A3A3A3]" />
             <span>Copy email</span>
           </motion.span>
         )}

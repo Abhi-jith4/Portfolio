@@ -17,7 +17,7 @@ export function SectionNav({ sections }: SectionNavProps) {
 
   return (
     <aside
-      className="hidden lg:block sticky top-28 w-56 xl:w-64 shrink-0 pl-6 border-l border-black/[0.08] dark:border-white/[0.1] h-fit"
+      className="hidden lg:block sticky top-28 w-56 xl:w-64 shrink-0 pl-6 border-l border-black/[0.08] dark:border-[#303030] h-fit"
       aria-label="Table of contents"
     >
       <span className="text-[11px] font-bold tracking-[0.18em] text-[#888888] dark:text-[#777777] uppercase block mb-3.5">
@@ -32,14 +32,14 @@ export function SectionNav({ sections }: SectionNavProps) {
               onClick={() => scrollTo(s.id)}
               className={`text-left text-[13px] py-1.5 transition-all duration-200 flex items-center group ${
                 isActive
-                  ? 'text-[#171717] dark:text-[#F5F5F3] font-semibold translate-x-1'
-                  : 'text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3]'
+                  ? 'text-[#171717] dark:text-[#F5F5F5] font-semibold translate-x-1'
+                  : 'text-[#737373] dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-[#F5F5F5]'
               }`}
             >
               <span
                 className={`inline-block w-1.5 h-1.5 rounded-full mr-2.5 transition-all duration-200 ${
                   isActive
-                    ? 'bg-[#171717] dark:bg-[#F5F5F3] scale-100'
+                    ? 'bg-[#171717] dark:bg-[#F5F5F5] scale-100'
                     : 'bg-transparent scale-0 group-hover:scale-75 group-hover:bg-[#888888]'
                 }`}
               />

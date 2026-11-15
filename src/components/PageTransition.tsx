@@ -25,19 +25,28 @@ export function PageTransition({ children, locationKey }: PageTransitionProps) {
         key={locationKey}
         initial={
           shouldReduceMotion
-            ? { opacity: 1 }
-            : { opacity: 0, y: 14 }
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 32 }
         }
-        animate={{ opacity: 1, y: 0 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: shouldReduceMotion ? 0 : 0.58,
+            ease: EASING,
+          },
+        }}
         exit={
           shouldReduceMotion
-            ? { opacity: 0 }
-            : { opacity: 0, y: -8, transition: { duration: 0.15, ease: 'easeIn' } }
-        }
-        transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : { duration: 0.42, ease: EASING }
+            ? { opacity: 0, y: 0 }
+            : {
+                opacity: 0,
+                y: 16,
+                transition: {
+                  duration: 0.22,
+                  ease: EASING,
+                },
+              }
         }
         className="w-full min-h-screen will-change-[opacity,transform]"
       >

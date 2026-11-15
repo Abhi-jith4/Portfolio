@@ -35,7 +35,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={handleCardClick}
-      className="group relative overflow-hidden rounded-[22px] bg-[#F0EFEC] dark:bg-[#1F1F1F] cursor-none border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.18] transition-all duration-400 ease-out shadow-sm hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/60 hover:-translate-y-1 flex flex-col h-full select-none"
+      className="group relative overflow-hidden rounded-[22px] bg-[#F0EFEC] dark:bg-[#202020] cursor-none border border-black/[0.06] dark:border-[#303030] hover:border-black/[0.14] dark:hover:border-[#484848] transition-all duration-400 ease-out shadow-sm hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/60 hover:-translate-y-1 flex flex-col h-full select-none"
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} case study`}
@@ -46,7 +46,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       }}
     >
       {/* Cover media */}
-      <div className="relative w-full aspect-video overflow-hidden bg-[#E5E3DE] dark:bg-[#181818] shrink-0 rounded-t-[21px]">
+      <div className="relative w-full aspect-video overflow-hidden bg-[#E5E3DE] dark:bg-[#161616] shrink-0 rounded-t-[21px]">
         {project.coverMedia.type === 'video' ? (
           <video
             ref={videoRef}
@@ -82,14 +82,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
           <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-bold text-lg leading-snug text-[#171717] dark:text-[#F5F5F3] tracking-tight">
+            <h3 className="font-bold text-lg leading-snug text-[#171717] dark:text-[#F5F5F5] tracking-tight">
               {project.title}
             </h3>
-            <span className="text-xs text-[#888888] dark:text-[#777777] shrink-0 mt-0.5 font-medium">
+            <span className="text-xs text-[#888888] dark:text-[#737373] shrink-0 mt-0.5 font-medium">
               {project.year}
             </span>
           </div>
-          <p className="text-sm text-[#5C5C5C] dark:text-[#A5A5A5] leading-relaxed mb-4">
+          <p className="text-sm text-[#5C5C5C] dark:text-[#A3A3A3] leading-relaxed mb-4">
             {project.subtitle}
           </p>
         </div>
@@ -97,7 +97,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#E2DFD8] dark:bg-[#282828] text-[#4A4A4A] dark:text-[#CCCCCC]"
+              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#E2DFD8] dark:bg-[#282828] text-[#4A4A4A] dark:text-[#D4D4D4] border border-black/[0.04] dark:border-[#343434]"
             >
               {tag}
             </span>

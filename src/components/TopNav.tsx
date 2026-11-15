@@ -83,8 +83,8 @@ export function TopNav() {
           onClick={() => navigate('/')}
           className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             !isAbout
-              ? 'bg-[#171717] dark:bg-[#F5F5F3] text-[#F5F5F3] dark:text-[#171717] shadow-sm'
-              : 'text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3]'
+              ? 'bg-[#171717] dark:bg-[#F5F5F5] text-[#F5F5F5] dark:text-[#111111] shadow-sm'
+              : 'text-[#737373] dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-[#F5F5F5]'
           }`}
         >
           Work
@@ -95,17 +95,17 @@ export function TopNav() {
           onClick={() => navigate('/about')}
           className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             isAbout
-              ? 'bg-[#171717] dark:bg-[#F5F5F3] text-[#F5F5F3] dark:text-[#171717] shadow-sm'
-              : 'text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3]'
+              ? 'bg-[#171717] dark:bg-[#F5F5F5] text-[#F5F5F5] dark:text-[#111111] shadow-sm'
+              : 'text-[#737373] dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-[#F5F5F5]'
           }`}
         >
           Info
         </button>
 
-        <div className="w-px h-4 bg-black/10 dark:bg-white/10 mx-1" />
+        <div className="w-px h-4 bg-black/10 dark:bg-[#303030] mx-1" />
         <button
           onClick={toggle}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-[#737373] dark:text-[#A5A5A5] hover:text-[#171717] dark:hover:text-[#F5F5F3] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-full text-[#737373] dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-[#F5F5F5] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
           aria-label="Toggle dark mode"
         >
           {isDark ? <Sun size={15} /> : <Moon size={15} />}
