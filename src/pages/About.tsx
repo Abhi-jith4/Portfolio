@@ -48,9 +48,9 @@ export function About() {
       <main className="relative z-10 max-w-4xl mx-auto bg-[#F0EFEC] dark:bg-[#1B1B1B] rounded-[28px] border border-black/[0.06] dark:border-[#303030] shadow-xl shadow-black/5 dark:shadow-black/50 px-6 sm:px-14 py-12 sm:py-16 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
 
-          {/* Profile Image — enters with scale + fade and refined dual ring */}
-          <motion.div {...makeImageFade(0.04)} className="mb-7 sm:mb-9 relative">
-            <div className="w-[124px] h-[124px] sm:w-44 sm:h-44 rounded-full overflow-hidden ring-2 ring-black/[0.06] dark:ring-[#303030] shadow-xl shadow-black/10 dark:shadow-black/40 transition-transform hover:scale-[1.03] duration-500 ease-out">
+          {/* Circular Profile Image (clean, no extra outer ring) */}
+          <motion.div {...makeImageFade(0.04)} className="mb-7 sm:mb-9">
+            <div className="w-[118px] h-[118px] sm:w-44 sm:h-44 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
               <img
                 src="/assets/about/avatar.png"
                 alt="Abhijith V S"
