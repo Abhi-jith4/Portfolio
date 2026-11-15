@@ -2,10 +2,10 @@ import type { ProjectData } from './types';
 
 const ag: ProjectData = {
   slug: 'agrirover',
-  title: 'AgriRover – Mobile App UX Redesign',
+  title: 'AgriRover – Autonomous Harvesting Rover',
   subtitle:
-    'A mobile app designed to simplify rover operation through intuitive navigation, accessible controls, and clear visual feedback.',
-  tags: ['Mobile UX', 'Figma', 'UI Design', 'Robotics', 'React Native'],
+    'A robotic harvesting vehicle and mobile application designed to assist farmers with tomato harvesting in large agricultural fields.',
+  tags: ['Major Project', 'Ongoing', 'Product Design', 'Robotics', 'CAD Modelling', 'Electronics'],
   accent: '#F97316',
   accentBg: '#1A0D00',
   year: '2026',
@@ -23,159 +23,157 @@ const ag: ProjectData = {
     },
   ],
   overview:
-    'AgriRover is an autonomous agricultural robot engineered to harvest ripe tomatoes using a 6-DOF robotic arm and an on-board collection box. Operating in dynamic field environments requires an interface where driving, robotic manipulation, live computer vision, and autonomous missions can be managed quickly and safely. This mobile application unifies all five operational subsystems into a glanceable, thumb-accessible cockpit designed in Figma and validated through code-to-hardware communication testing.',
-  myRole: 'UI/UX Design, App Development & Hardware Communication Testing',
+    'AgriRover is an autonomous tomato-harvesting rover designed to help farmers reduce manual effort in large tomato fields. The goal is to develop a robotic vehicle that can move close to tomato plants, identify ripe tomatoes, pick them using a 6-DOF robotic arm, and place the harvested tomatoes into a collection box. We are currently developing a prototype to demonstrate the concept and its working.',
+  myRole: 'Product Design, 3D CAD Modelling & Hardware Integration',
   myRoleContributions: [
-    'Designed the mobile app interface and screen layouts in Figma.',
-    'Structured the information architecture and navigation flow.',
-    'Designed driving, steering, and robotic arm control interactions.',
-    'Designed autonomous and unload mode interfaces.',
-    'Created visual indicators for system status, connectivity, and alerts.',
-    'Developed the app and tested communication between the app and rover hardware.',
+    'Designed the AgriRover mobile application interface using Figma, focusing on rover movement, robotic arm control, camera monitoring, and autonomous operation.',
+    'Currently learning and working on the CAD modelling of a 6-DOF robotic arm using Fusion 360 (ongoing development).',
+    'Contributing to hardware connections and integration of the rover electronic components.',
+    'Participating in the development of the overall rover prototype and understanding how the mobile app, electronics, and robotic arm work together.',
   ],
   team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel',
-  timeline: 'Completed October 2026',
-  status: 'Prototype Completed · Field Testing Pending',
+  timeline: '2026 – Present (In Development)',
+  status: 'Major Project · Prototype in Development',
   stats: [
-    { value: '11', label: 'Screens Designed', description: 'Mobile app screens' },
-    { value: '06', label: 'App Navigation Options', description: 'Core module cards on Home' },
-    { value: '03', label: 'Drive Modes', description: 'Manual, Unload, and Autonomous' },
-    { value: '6-DOF', label: 'Robotic Arm Controls', description: 'Full joint articulation & presets' },
+    { value: 'Major Project', label: 'Academic Scope', description: 'Final-year ongoing major project' },
+    { value: 'In Progress', label: 'Current Status', description: 'Prototype in active development' },
+    { value: '11', label: 'App Screens Designed', description: 'Mobile control interface in Figma' },
+    { value: '6-DOF', label: 'Robotic Arm Modelling', description: 'CAD mechanical design in Fusion 360' },
   ],
   contextData: {
-    heading: 'One app to operate an entire harvesting rover.',
-    body: 'AgriRover is an autonomous tomato-harvesting robot with a 6-DOF robotic arm and an onboard collection box. Bringing driving, arm manipulation, computer vision, and harvest collection into a single mobile interface requires careful navigation and interaction design across six operational demands:',
+    heading: 'A mobile interface to operate an agricultural rover.',
+    body: 'AgriRover combines vehicle driving, robotic arm movement, camera vision, and harvest collection. The mobile application was designed to give farmers and operators clear, simple control over all key functions:',
     subsystems: [
       {
         title: 'Drive and Steer the Rover',
-        description: 'Command forward, reverse, speed throttle, and precise wheel angle steering across farm rows.',
+        description: 'Move the vehicle forward and backward, control its speed, and steer precisely between plant rows.',
       },
       {
-        title: 'Operate the Robotic Arm',
-        description: 'Independently articulate joints J1 through J5 and actuate the end-effector gripper.',
+        title: 'Control the Robotic Arm',
+        description: 'Adjust each arm joint individually and open or close the gripper to hold tomatoes gently.',
       },
       {
-        title: 'Monitor Camera Feed',
-        description: 'Stream low-latency WebRTC video from the mast camera to confirm tomato ripeness and obstacle clearance.',
+        title: 'Live Camera View',
+        description: 'Watch a live video feed from the rover camera to check tomato ripeness and spot obstacles.',
       },
       {
-        title: 'Start Autonomous Missions',
-        description: 'Initiate, pause, and monitor automated row-following and computer-vision harvesting routines.',
+        title: 'Start Autonomous Harvesting',
+        description: 'Start, pause, or stop automated row-following and tomato harvesting with one tap.',
       },
       {
-        title: 'Unload the Collection Box',
-        description: 'Actuate the motorized collection-box lift mechanism with built-in timed safety cutoffs.',
+        title: 'Empty the Collection Box',
+        description: 'Lift and tilt the collection box using motor controls to unload picked tomatoes into field crates.',
       },
       {
-        title: 'Monitor Connectivity & Health',
-        description: 'Continuously track battery state of charge, CPU temperature, Wi-Fi RSSI, and ESP32 heartbeat.',
+        title: 'Check Rover Health',
+        description: 'Keep track of battery level, internal temperature, and wireless connection strength at all times.',
       },
     ],
   },
   problem: {
-    headline: 'Five subsystems, one thumb.',
-    body: 'Operating a motorized agricultural robot outdoors introduces unique human-factors constraints—glare from bright sunlight, operating with one hand while walking alongside the rover, and zero margin for delayed commands. Five design challenges shaped the application:',
+    headline: 'Helping farmers harvest crops with less physical strain.',
+    body: 'Harvesting tomatoes by hand requires hours of bending, lifting, and repetitive work under intense sun. Developing a robotic helper introduces practical challenges that the mobile app must solve:',
     challenges: [
       {
-        title: 'Multiple Controls',
-        body: 'Making driving, robotic arm manipulation, live camera viewing, and autonomous operation accessible from one mobile app without cognitive overload.',
+        title: 'Controlling Multiple Parts Easily',
+        body: 'The operator needs to drive the wheels, move the arm, watch the camera, and check battery levels without getting confused by complicated menus.',
       },
       {
-        title: 'Navigation Complexity',
-        body: 'Allowing users to transition between operational workflows (e.g. driving between rows vs. picking tomatoes) without getting trapped in deep menu hierarchies.',
+        title: 'Simple and Quick Navigation',
+        body: 'Farmers need to switch quickly between driving between field rows and controlling the arm without getting lost in deep settings.',
       },
       {
-        title: 'Safety & Emergency Stop',
-        body: 'Making Emergency Stop and high-consequence motor commands unmistakable, instant, and impossible to miss in high-stress moments.',
+        title: 'Clear Safety and Stop Controls',
+        body: 'If something unexpected happens in the field, the operator must be able to stop the rover immediately with a large, unmissable Emergency Stop button.',
       },
       {
-        title: 'Outdoor Usability',
-        body: 'Ensuring interface elements remain legible in harsh sunlight with large touch targets, high contrast, and clean visual cards.',
+        title: 'Easy to Read in Bright Sunlight',
+        body: 'Screens used outdoors must have strong visual contrast, large text, and big touch buttons that are easy to tap while wearing garden gloves.',
       },
       {
-        title: 'System Visibility',
-        body: 'Clearly communicating Wi-Fi connection health, battery voltage, camera stream state, and hardware communication over an ad-hoc field link.',
+        title: 'Clear Wireless Connection Status',
+        body: 'The app must clearly show whether it is connected to the rover so the operator always knows the vehicle is responding.',
       },
     ],
   },
   principles: [
     {
-      title: 'One Tap from Home',
-      body: 'Six large module cards provide direct access to every core app function without nested menus. Back navigation always returns to the Home hub.',
+      title: 'One Tap from the Home Screen',
+      body: 'Six clear cards give immediate access to every major function. The user is never more than one tap away from returning to the home screen.',
     },
     {
-      title: 'Safety Always Visible',
-      body: 'A prominent full-width red Emergency Stop is permanently anchored on the Drive screen, and a live Connection status chip is displayed across all screens.',
+      title: 'Safety is Always Visible',
+      body: 'A large red Emergency Stop button is permanently pinned at the bottom of the manual driving screen for instant access.',
     },
     {
-      title: 'Glanceable Health',
-      body: 'Battery voltage, CPU load, and Wi-Fi signal strength are highlighted as high-contrast numbers directly on Home without opening diagnostic sub-pages.',
+      title: 'Key Information at a Glance',
+      body: 'Battery life, connection status, and system temperature are displayed prominently on the home screen without needing to open sub-menus.',
     },
     {
-      title: 'Colour as Navigation',
-      body: 'Distinct semantic colors instantly distinguish functional domains: Orange for drive, Blue for robotic arm, Green for camera, Purple for autonomy, and Teal for system status.',
+      title: 'Color-Coded Sections',
+      body: 'Simple colors help users instantly know what they are controlling: Orange for driving, Blue for the robotic arm, Green for camera, and Purple for autonomous mode.',
     },
   ],
   infoArchitecture: {
-    heading: 'How the 11 screens connect.',
-    body: 'The app is organized around a hub-and-spoke architecture that balances quick task switching with strict back-stack predictability:',
+    heading: 'How the 11 app screens are organized.',
+    body: 'The app uses a simple hub layout where every tool connects directly back to the main home screen:',
     elements: [
       {
         number: '01',
-        title: 'Home as Navigation Hub',
+        title: 'Home as the Main Hub',
         description:
-          'Six large, color-coded module cards fan out directly to Drive Rover, Robotic Arm, Camera Feed, Autonomous Mode, Saved Poses, and System Status.',
+          'Six clear, color-coded cards give direct access to Drive Rover, Robotic Arm, Camera Feed, Autonomous Mode, Saved Poses, and System Status.',
       },
       {
         number: '02',
-        title: 'Integrated Drive Context',
+        title: 'Unified Drive Screen',
         description:
-          'Manual Control, Unload Mode, and Autonomous routines live as segmented tabs inside the Drive screen, allowing the operator to shift tasks without losing situational context.',
+          'Manual Driving, Unload Mode, and Autonomous routines live together as easy tabs inside the Drive section so the user never loses their place.',
       },
       {
         number: '03',
-        title: 'Persistent Bottom Navigation',
+        title: 'Simple Bottom Bar',
         description:
-          'A fixed bottom bar provides instant access to Home, Alerts, Settings, and About from any point in the application.',
+          'A fixed navigation bar at the bottom provides one-tap access to Home, Alerts, Settings, and About from anywhere in the app.',
       },
       {
         number: '04',
-        title: 'Interactive Screen Hierarchy',
+        title: 'Easy Back Navigation',
         description:
-          'Every secondary view maintains a single-tap back arrow returning directly to the Home hub, preventing navigation disorientation in the field.',
+          'Every screen includes a prominent back button that takes the user directly back to Home, preventing any confusion in the field.',
       },
     ],
   },
   processSections: [
     {
       id: 'step-1',
-      heading: '1. Understand Rover Operational Requirements',
-      body: 'Analyzed the physical rover subsystems—wheel drive motors, 6-DOF arm servos, collection-box lift, and camera stream—to determine operator task priorities during harvesting.',
+      heading: '1. Understand Rover & Farming Needs',
+      body: 'Studied what farmers need during harvesting and analyzed the rover main parts—driving wheels, 6-DOF arm joints, collection box, and camera—to decide which controls matter most.',
     },
     {
       id: 'step-2',
-      heading: '2. Organize into a Clear Navigation Structure',
-      body: 'Structured the application into a hub-and-spoke model with six primary Home cards, tabbed drive modes, and persistent global navigation.',
+      heading: '2. Organize Clear & Simple Navigation',
+      body: 'Structured the mobile app into a clear home hub with six main action cards and organized tabs so users can switch tasks effortlessly.',
     },
     {
       id: 'step-3',
-      heading: '3. Design Screen Layouts & Flows in Figma',
-      body: 'Designed 11 mobile screens in Figma, crafting clean white card surfaces on a cool-grey canvas and connecting every transition into an interactive prototype.',
+      heading: '3. Design Screen Layouts in Figma',
+      body: 'Designed 11 mobile screens in Figma using high-contrast cards, large touch targets, and clear visual indicators, connected into an interactive prototype.',
     },
     {
       id: 'step-4',
-      heading: '4. Create Specialized HMI Controls',
-      body: 'Engineered custom touch controls tailored for physical machinery: the multi-function steering dial, joint articulation sliders, and the full-width Emergency Stop.',
+      heading: '4. 6-DOF Robotic Arm CAD Modelling (Ongoing)',
+      body: 'Currently learning and working on the 3D CAD design of the 6-DOF robotic arm using Fusion 360, focusing on joint ranges and gripper mechanics.',
     },
     {
       id: 'step-5',
-      heading: '5. Establish Semantic Design System',
-      body: 'Defined purposeful color tokens (Orange, Green, Blue, Purple, Teal, Red), high-contrast typography, and standardized touch target sizes for field use.',
+      heading: '5. Hardware Connections & Integration',
+      body: 'Contributing to the electrical wiring, motor connections, and sensor integration on the rover prototype chassis alongside team members.',
     },
     {
       id: 'step-6',
-      heading: '6. Develop App & Test Hardware Communication',
-      body: 'Built the mobile application frontend and verified two-way telemetry and command packet transmission against the rover ESP32 and Raspberry Pi hardware.',
+      heading: '6. Testing System Communication',
+      body: 'Testing how commands sent from the mobile app are received and executed by the rover onboard electronics and microcontrollers.',
     },
   ],
   screenshotGroups: [
@@ -183,14 +181,14 @@ const ag: ProjectData = {
       id: 'home-dashboard',
       title: '1. Home Dashboard',
       description:
-        'The primary launchpad of the application. Provides an instantaneous overview of connection status, system vital metrics, and one-tap entry into all rover capabilities.',
+        'The main launchpad of the app. Gives a quick overview of connection status, battery health, and one-tap entry into all rover capabilities.',
       screens: [
         {
           src: '/assets/agrirover/screens/01_home_dashboard.png',
           alt: 'AgriRover mobile app Home Dashboard screen',
           title: 'Home Navigation Hub & Status Overview',
           description:
-            'Features live "Connected" badge, six color-coded module cards (Drive Rover, Robotic Arm, Camera, Autonomous, Saved Poses, System Status), battery/CPU/Wi-Fi health tiles, and persistent bottom navigation.',
+            'Shows a green "Connected" badge, six colorful module cards (Drive Rover, Robotic Arm, Camera, Autonomous, Saved Poses, System Status), and battery/Wi-Fi health stats.',
         },
       ],
     },
@@ -198,14 +196,14 @@ const ag: ProjectData = {
       id: 'drive-steering',
       title: '2. Manual Drive and Steering Controls',
       description:
-        'The manual vehicle control cockpit. Combines directional triggers, speed throttle control, a custom multi-functional steering dial, and an immediate Emergency Stop button.',
+        'The manual vehicle control screen. Combines forward and reverse buttons, speed control, a steering dial, and an immediate Emergency Stop button.',
       screens: [
         {
           src: '/assets/agrirover/screens/02_drive_steering.png',
           alt: 'AgriRover Drive Rover Screen with steering dial and E-Stop',
           title: 'Steering Dial & Rover Drive Cockpit',
           description:
-            'Features Forward/Stop/Reverse triggers, speed slider with PWM feedback, full-width red Emergency Stop, and a custom circular steering dial (-45° to +45°) with live numeric readout and one-tap Center reset.',
+            'Features Forward, Stop, and Reverse buttons, a speed slider, an unmissable red Emergency Stop button, and an interactive steering dial with one-tap center reset.',
         },
       ],
     },
@@ -213,14 +211,14 @@ const ag: ProjectData = {
       id: 'unload-mode',
       title: '3. Unload Mode',
       description:
-        'Dedicated collection-box lift interface enabling the operator to dump harvested tomatoes into field transport crates with built-in timed safety protection.',
+        'Controls the motorized collection box to empty harvested tomatoes into farm crates safely.',
       screens: [
         {
           src: '/assets/agrirover/screens/03_unload_mode.png',
           alt: 'AgriRover Unload Mode screen with lift controls',
           title: 'Collection-Box Lift Controls',
           description:
-            'Offers opposing "LIFT UP" and "LOWER DOWN" actions, "STATUS: READY" confirmation, and an automatic 10-second relay shutoff to prevent actuator motor burn-out.',
+            'Provides clear "LIFT UP" and "LOWER DOWN" buttons, a ready confirmation status, and automatic safety shut-offs to protect the lift motors.',
         },
       ],
     },
@@ -228,14 +226,14 @@ const ag: ProjectData = {
       id: 'autonomous-mode',
       title: '4. Autonomous Mode',
       description:
-        'Supervised autonomous harvesting control room. Enables the operator to initiate computer-vision tomato harvesting runs while monitoring live visual and status feedback.',
+        'Automated harvesting screen where operators can start automated harvesting while watching the live camera.',
       screens: [
         {
           src: '/assets/agrirover/screens/04_autonomous_mode.png',
           alt: 'AgriRover Autonomous Mode screen with live camera preview',
           title: 'Autonomous Mission Execution',
           description:
-            'Provides Start, Pause, and Stop mission actions, live camera preview, active tomato detection indicators, and mission progress telemetry.',
+            'Provides Start, Pause, and Stop mission buttons, a live camera preview, and visual indicators showing tomato detection progress.',
         },
       ],
     },
@@ -243,29 +241,29 @@ const ag: ProjectData = {
       id: 'robotic-arm',
       title: '5. Robotic Arm Controls',
       description:
-        'Joint-by-joint articulation cockpit for the 6-DOF robotic arm. Uses a visual arm diagram and dedicated sliders to create a direct mental model between touch and physical servo movement.',
+        'Joint-by-joint controls for the 6-DOF robotic arm. Uses simple sliders to make moving each joint intuitive and predictable.',
       screens: [
         {
           src: '/assets/agrirover/screens/05_robotic_arm.png',
           alt: 'AgriRover 6-DOF Robotic Arm screen with joint sliders',
-          title: 'Joint-Level Articulation & Gripper Control',
+          title: 'Joint Sliders & Gripper Control',
           description:
-            'Displays visual arm schematic, Open/Close gripper toggle, J1 through J5 joint sliders with degree boundaries, and fast switching between Joint Control and Saved Poses.',
+            'Shows a visual arm diagram, Open/Close gripper buttons, and smooth sliders to position joints J1 through J5 accurately.',
         },
       ],
     },
     {
       id: 'saved-poses',
-      title: '6. Saved Arm Poses',
+      title: '6. Saved Arm Positions',
       description:
-        'A preset library storing pre-calibrated arm trajectories for common harvesting tasks, eliminating the fatigue of manual joint manipulation.',
+        'A preset library storing pre-set arm movements for frequent tasks, saving operators from adjusting joints manually every time.',
       screens: [
         {
           src: '/assets/agrirover/screens/06_saved_poses.png',
           alt: 'AgriRover Saved Arm Poses screen with preset cards',
           title: 'One-Tap Arm Preset Library',
           description:
-            'Provides pre-configured macros for "Home Position", "Pick Tomato", "Place in Bin", and "Transport Position" with single-tap "RUN POSE" triggers and custom user save slots.',
+            'Provides ready-to-use buttons for "Home Position", "Pick Tomato", "Place in Bin", and "Transport Position" with one-tap execution.',
         },
       ],
     },
@@ -273,14 +271,14 @@ const ag: ProjectData = {
       id: 'camera-feed',
       title: '7. Camera and Live Feed',
       description:
-        'Full-screen video monitoring console displaying low-latency WebRTC streams from the mast camera with diagnostic connection telemetry.',
+        'Live video monitoring screen showing what the rover camera sees in real time with connection details.',
       screens: [
         {
           src: '/assets/agrirover/screens/07_camera_feed.png',
           alt: 'AgriRover Camera Feed Screen with live and offline states',
-          title: 'Live Video Feed & Diagnostic Stream Telemetry',
+          title: 'Live Video Feed & Connection Details',
           description:
-            'Features high-contrast video window, Live/Offline badge, Reload and Expand buttons, and stream connection details (host IP, port, codec, and ESP32 status).',
+            'Features a large video window, live/offline badge, reload button, and network details showing connection health.',
         },
       ],
     },
@@ -288,14 +286,14 @@ const ag: ProjectData = {
       id: 'system-status',
       title: '8. System Diagnostics',
       description:
-        'Central hardware diagnostic dashboard aggregating vital health signals across rover compute, power, and wireless subsystems.',
+        'Hardware health dashboard summarizing battery power, processor temperature, and wireless connection signals.',
       screens: [
         {
           src: '/assets/agrirover/screens/08_system_status.png',
           alt: 'AgriRover System Status screen with telemetry tiles',
-          title: 'Comprehensive Subsystem Health Overview',
+          title: 'Hardware Health Overview',
           description:
-            'Displays battery percentage and voltage, CPU utilization and temperature, Wi-Fi RSSI signal strength, controller link state, and motor thermal telemetry.',
+            'Displays battery percentage, voltage, computer temperature, Wi-Fi signal strength, and motor status in clear numbers.',
         },
       ],
     },
@@ -303,36 +301,36 @@ const ag: ProjectData = {
       id: 'alerts-notifications',
       title: '9. Alerts and Notifications',
       description:
-        'Action-oriented notification center logging hardware events, harvest milestones, and safety warnings with semantic color coding.',
+        'Clear notification center showing recent system events, harvest milestones, and safety warnings.',
       screens: [
         {
           src: '/assets/agrirover/screens/09_notifications.png',
           alt: 'AgriRover Notifications Screen with timestamped alert cards',
           title: 'Categorized Alerts & Mission Log',
           description:
-            'Color-coded notification cards with timestamps and clear plain-language descriptions distinguishing harvest completion, battery warnings, and rover disconnections.',
+            'Color-coded notification cards with timestamps and plain-English descriptions explaining battery warnings, harvest updates, or connection changes.',
         },
       ],
     },
     {
       id: 'settings-about',
-      title: '10. Settings & Platform Information',
+      title: '10. Settings & Project Information',
       description:
-        'Configuration console for field network parameters, telemetry polling frequencies, and platform hardware specifications.',
+        'Settings screen for network setup, interface options, and project details.',
       screens: [
         {
           src: '/assets/agrirover/screens/10_settings.png',
           alt: 'AgriRover Settings Screen',
-          title: 'Field Network & HMI Configuration',
+          title: 'Network & Interface Settings',
           description:
-            'Allows field operators to configure rover host IP, video streaming port, dark theme for field glare, haptic feedback on motor stops, and telemetry rate (10 Hz / 100 ms).',
+            'Allows operators to configure rover IP addresses, video port, dark theme for field glare, and vibration feedback on button presses.',
         },
         {
           src: '/assets/agrirover/screens/11_about.png',
           alt: 'AgriRover About Screen',
-          title: 'Platform Architecture & Credits',
+          title: 'Project Architecture & Team Credits',
           description:
-            'Documents AgriRover v2.0 platform architecture, core compute specifications (Raspberry Pi 4B, ESP32-WROOM, 6-DOF servo arm), and team credits.',
+            'Documents the AgriRover project architecture, hardware components, and team contributor credits.',
         },
       ],
     },
@@ -343,37 +341,37 @@ const ag: ProjectData = {
         name: 'Brand Orange',
         hex: '#F97316',
         role: 'Primary Actions & Drive Controls',
-        desc: 'Marks primary interactive triggers, active tab selections, directional drive buttons, and the steering dial.',
+        desc: 'Used for primary buttons, active tabs, driving controls, and the circular steering dial.',
       },
       {
         name: 'Success Green',
         hex: '#22C55E',
-        role: 'Connected State & Forward Drive',
-        desc: 'Communicates verified connection, camera live status, forward motion commands, and operational readiness.',
+        role: 'Connected Status & Forward Drive',
+        desc: 'Shows confirmed connection, active camera feed, forward motion, and ready states.',
       },
       {
         name: 'Arm Blue',
         hex: '#2563EB',
-        role: 'Robotic Arm Controls & Telemetry',
-        desc: 'Identifies robotic arm joint sliders, angle readouts, gripper toggles, and CPU utilization telemetry.',
+        role: 'Robotic Arm Controls',
+        desc: 'Highlights robotic arm sliders, joint angle numbers, and gripper toggle buttons.',
       },
       {
         name: 'Autonomy Purple',
         hex: '#7C3AED',
-        role: 'Autonomous Harvesting Missions',
-        desc: 'Dedicated accent for autonomous navigation routines, row-following algorithms, and AI tomato detection.',
+        role: 'Autonomous Harvesting Mode',
+        desc: 'Used for autonomous harvesting buttons, mission status, and automated detection indicators.',
       },
       {
         name: 'Status Teal',
         hex: '#0EA5B7',
         role: 'System Health & Diagnostics',
-        desc: 'Used across system status indicators, Wi-Fi signal badges, hardware communication rows, and diagnostic tools.',
+        desc: 'Used for battery metrics, Wi-Fi signal indicators, and diagnostic information cards.',
       },
       {
         name: 'Danger Red',
         hex: '#EF4444',
-        role: 'Emergency Stop & Critical Errors',
-        desc: 'Reserved exclusively for the prominent Emergency Stop button, hardware disconnections, and critical alerts.',
+        role: 'Emergency Stop & Warnings',
+        desc: 'Reserved exclusively for the large Emergency Stop button, disconnections, and critical alerts.',
       },
     ],
     typography: [
@@ -381,77 +379,77 @@ const ag: ProjectData = {
         level: 'Primary Headers & Key Numbers',
         size: '22px–26px',
         weight: 'Bold / Black (700/900)',
-        usage: 'Screen titles, steering angle readouts, battery percentages, and high-glanceability metrics.',
+        usage: 'Screen titles, steering degree numbers, battery percentages, and key metrics.',
       },
       {
         level: 'Card Titles & Tab Labels',
         size: '14px–16px',
         weight: 'SemiBold (600)',
-        usage: 'Module card titles, segmented mode tabs, joint names (J1–J5), and action button text.',
+        usage: 'Module card titles, navigation tabs, joint names (J1–J5), and action button text.',
       },
       {
-        level: 'Status Labels & Metadata',
+        level: 'Status Labels & Details',
         size: '11px–13px',
         weight: 'Medium / Regular (400/500)',
-        usage: 'Connection badges, sensor units, notification timestamps, and secondary operational details.',
+        usage: 'Connection badges, sensor units, notification timestamps, and helpful descriptions.',
       },
     ],
     components: [
       {
         title: 'Segmented Mode Tabs',
         description:
-          'Pill-style top navigation tabs allowing fluid switching between Manual Control, Unload Mode, and Autonomous routines without losing context.',
+          'Clear top tabs allowing quick switching between Manual Driving, Unload Mode, and Autonomous routines.',
       },
       {
         title: 'Interactive Steering Dial',
         description:
-          'Custom circular touch dial mapping physical front-wheel steering limits (-45° to +45°) with live degree readout and one-tap center reset.',
+          'Circular touch dial showing front wheel steering angle with live degree numbers and a one-tap center button.',
       },
       {
         title: 'Status & Connection Chips',
         description:
-          'High-contrast pills (e.g. Connected, Online, Offline, Status: Ready) providing unambiguous operational status at a glance.',
+          'High-contrast badges (such as Connected, Ready, or Offline) that are easy to spot at a quick glance.',
       },
       {
         title: 'Joint Articulation Sliders',
         description:
-          'Touch-friendly range sliders displaying minimum, current, and maximum degree bounds for smooth robotic arm manipulation.',
+          'Finger-friendly sliders showing minimum, current, and maximum angles for smooth robotic arm positioning.',
       },
       {
         title: 'Pinned Emergency Stop Button',
         description:
-          'Full-width high-contrast red button anchored to the base of the manual driving screen for instantaneous fail-safe reaction.',
+          'Full-width red button permanently fixed at the bottom of the manual driving screen for instant safety.',
       },
       {
-        title: 'Persistent Bottom Navigation Bar',
+        title: 'Bottom Navigation Bar',
         description:
-          'Fixed four-tab bottom bar (Home, Alerts, Settings, About) providing consistent back-stack navigation throughout the entire application.',
+          'Fixed four-item bar (Home, Alerts, Settings, About) providing fast navigation throughout the entire app.',
       },
     ],
   },
   safetyFeedback: {
-    heading: 'Safety, errors and honest states.',
-    body: 'An agricultural robotics application must be judged by how effectively it protects hardware, crops, and human operators when unexpected events occur. Three core feedback mechanisms ensure fail-safe operation:',
+    heading: 'Safety, feedback, and clear states.',
+    body: 'In agricultural robotics, safety and clear feedback protect the machine, crops, and people working nearby. Three built-in feedback features keep operations clear and safe:',
     items: [
       {
-        title: 'Emergency Stop',
-        subtitle: 'Instant Hardware Override',
+        title: 'Emergency Stop Button',
+        subtitle: 'Instant Motor Shutdown',
         description:
-          'A full-width, high-contrast red Emergency Stop button is permanently pinned to the base of the Drive screen. Tapping it instantly broadcasts a zero-velocity kill command to all wheel and arm motors and logs a critical event in the Alerts feed.',
+          'A prominent red Emergency Stop button is permanently pinned at the bottom of the driving screen. Tapping it immediately sends a stop signal to all motors and records an urgent notice in the Alerts feed.',
         imageSrc: '/assets/agrirover/screens/02_drive_steering.png',
       },
       {
-        title: 'Offline Video State',
-        subtitle: 'Transparent Stream Recovery',
+        title: 'Clear Offline Video Notice',
+        subtitle: 'Transparent Camera Status',
         description:
-          'Rather than displaying an ambiguous frozen image or an unexplained blank canvas when the camera connection drops, the app presents a clear "OFFLINE" indicator with diagnostic stream parameters and a single-tap "Reload" action.',
+          'If the camera signal drops, the screen clearly displays an "OFFLINE" notice with an easy "Reload" button rather than showing a confusing frozen picture.',
         imageSrc: '/assets/agrirover/screens/07_camera_feed.png',
       },
       {
-        title: 'Alerts That Explain',
-        subtitle: 'Action-Oriented System Guidance',
+        title: 'Plain-English Alerts',
+        subtitle: 'Helpful and Actionable Messages',
         description:
-          'Alerts are categorized with distinct color tokens (Red for alert, Yellow for warning, Green for success) and provide concise, plain-language descriptions that instruct the operator on immediate next steps.',
+          'Alerts use simple colors (Red for urgent warnings, Yellow for cautions, Green for success) and plain language that tells the operator exactly what happened and what to do next.',
         imageSrc: '/assets/agrirover/screens/09_notifications.png',
       },
     ],
@@ -461,26 +459,27 @@ const ag: ProjectData = {
   videoPoster: '/assets/agrirover/poster.jpg',
   outcome: {
     done: [
-      "Designed 11 mobile app screens covering the rover's main operations.",
-      'Created a structured navigation system with six main Home screen entry points.',
-      'Designed interfaces for drive control, steering, robotic arm operation, and different operating modes.',
-      'Established consistent visual indicators for connection and system status.',
-      'Developed the app and tested communication with the rover hardware.',
+      'Designed 11 mobile application screens in Figma covering rover driving, robotic arm controls, camera feed, and autonomous mode.',
+      'Created a simple navigation layout with six main entry cards on the Home screen.',
+      'Currently developing the 3D CAD model of the 6-DOF robotic arm using Fusion 360 (ongoing work).',
+      'Contributing to hardware wiring, motor connections, and electronics integration on the rover chassis.',
+      'Testing communication between the mobile app interface and rover onboard electronics.',
     ],
-    limitsHeading: 'Current limitations',
+    limitsHeading: 'Current project status & limitations',
     honestLimits: [
-      'Notifications currently display demonstration content rather than live operational events.',
-      'The app has not yet undergone usability testing with real operators or validation in agricultural field conditions.',
+      'AgriRover is currently an ongoing major project; the complete physical rover and autonomous harvesting system are actively in development.',
+      'The 6-DOF robotic arm CAD model is still being developed in Fusion 360 and has not yet been physically manufactured.',
+      'Field testing in real tomato fields will be conducted once the full physical prototype is assembled and tested.',
     ],
     nextSteps: [
-      'Conduct field usability testing with real operators to evaluate navigation clarity, control accessibility, and ease of operation.',
-      'Enhance outdoor usability through improved text readability, visual contrast, and accessible touch targets.',
-      'Refine interaction feedback with clearer loading, success, error, and confirmation states for important user actions.',
-      'Enhance the Alerts screen with live harvesting progress, tomato counts, and mission history to help operators understand completed and ongoing operations.',
+      'Complete the 3D CAD modeling and mechanical fabrication of the 6-DOF robotic arm.',
+      'Finalize the physical rover chassis and complete all electronic wiring connections.',
+      'Test computer-vision tomato detection and harvesting in real field conditions.',
+      'Conduct usability testing with farmers to further refine the mobile app controls and readability.',
     ],
-    takeawayHeading: 'Design reflection',
+    takeawayHeading: 'Project reflection',
     takeaway:
-      'Designing AgriRover taught me how important it is to simplify complex operations through intuitive navigation, accessible controls, and meaningful visual feedback. It helped me understand how thoughtful interface design can make a technical product easier and more comfortable to use.',
+      'Working on AgriRover as my major project has helped me grow as a product designer. It has given me hands-on experience in balancing mobile interface design with physical 3D CAD modeling and practical electronics, showing me how software and hardware come together in a real-world product.',
   },
 };
 

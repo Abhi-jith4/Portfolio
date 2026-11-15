@@ -2,9 +2,9 @@ import type { ProjectData } from './types';
 
 const ms: ProjectData = {
   slug: 'medisync',
-  title: 'MediSync',
-  subtitle: 'A connected medication dispensing and remote vital monitoring system.',
-  tags: ['Mobile App', 'React Native', 'Firebase', 'IoT', 'Hardware'],
+  title: 'MediSync – Smart Medicine Dispenser',
+  subtitle: 'A connected pill & syrup dispensing machine with remote health vitals monitoring.',
+  tags: ['Mini Project', 'Completed Prototype', 'Product Design', 'IoT Hardware', 'Healthcare', 'Mobile App'],
   accent: '#8B5CF6',
   accentBg: '#0F0A1E',
   year: '2026',
@@ -22,233 +22,231 @@ const ms: ProjectData = {
     },
   ],
   overview:
-    'MediSync pairs a tabletop dispenser for tablets and syrup with a vitals station that reads SpO₂, heart rate and stress. Both report to one mobile app through Firebase. A caregiver can schedule doses, see whether a dose was actually dispensed, and take a reading without being in the room. There is no static IP, port forwarding or Bluetooth pairing anywhere in the setup.',
-  myRole:
-    'App Development, Hardware Integration & Testing',
+    'MediSync is a smart medicine dispensing and remote health monitoring system designed to help elderly people who may forget to take their medicines at the correct time. We identified that people experiencing memory-related difficulties frequently miss their medication schedules. To solve this, we developed a physical product that dispenses scheduled pills and syrups automatically. Caregivers configure dispensing times through a mobile app, while the device also reads the patient’s heart rate and blood oxygen (SpO₂) and displays the readings in the app.',
+  myRole: 'Product Design, Hardware Assembly & Motor Programming',
   myRoleContributions: [
-    'Mobile application UI/UX design and frontend development using React Native 0.81 and Expo SDK 54.',
-    'Engineered the cloud data model on Firebase Realtime Database for real-time bidirectional telemetry.',
-    'Constructed the physical enclosure from foam board with precision cutouts for dual outlets and dual displays.',
-    'Wired the dispenser electronics (stepper carousel & peristaltic pump) and vitals sensors (MAX30102 & AD8232).',
-    'Tested end-to-end communication between the two independent ESP32 microcontrollers and the mobile app.',
+    'Mobile Application Design: Designed the MediSync mobile app interface in Figma, including medicine scheduling, dispensing status, and patient health monitoring screens.',
+    'Hardware Connections: Contributed to connecting the electronic components, microcontrollers, and sensors used in the dispenser and health monitoring station.',
+    'Motor Programming: Contributed to programming and controlling the multiple motors involved in the medicine dispensing mechanism (rotating stepper motor for pills and liquid pump for syrups).',
+    'Health Monitoring: Worked on integrating health monitoring features that collect heart rate and blood oxygen (SpO₂) readings and display them in the mobile application.',
+    'System Integration: Contributed to connecting the mobile application with the hardware system so users can schedule medicines and receive updated health information in real time.',
   ],
   team: 'Abhijith V S, Pranav E, Abhiram S, Emmanuel',
   timeline: 'Completed May 2026',
-  status: 'Prototype Completed · App v1.0',
+  status: 'Mini Project · Functional Hardware Prototype',
   stats: [
     {
+      value: 'Mini Project',
+      label: 'Academic Scope',
+      description: 'Completed hardware & software prototype',
+    },
+    {
       value: '05',
-      label: 'Tablet Compartments',
-      description: 'Scheduled tablet dispensing',
+      label: 'Pill Compartments',
+      description: 'Motorized automatic tablet dispensing',
     },
     {
       value: '05',
       label: 'Syrup Compartments',
-      description: 'Automated liquid dispensing',
+      description: 'Calibrated pump liquid dispensing',
     },
     {
-      value: '0.5–15 mL',
-      label: 'Adjustable Dosage',
-      description: 'Configurable syrup quantities',
-    },
-    {
-      value: 'Live',
-      label: 'Device Monitoring',
-      description: 'Connection and dispensing status',
+      value: 'Pulse & SpO₂',
+      label: 'Health Monitoring',
+      description: 'Real-time vital signs in the mobile app',
     },
   ],
   problem: {
-    headline: 'Dosing at home breaks in the gaps between devices.',
-    body: 'A reminder on a phone says nothing about whether a tablet actually came out. Caregivers manage medication from a distance with no objective confirmation, while vital signs live in silos on separate gadgets that require manual recording and complex network configuration.',
+    headline: 'Helping elderly patients take the right medicine at the right time.',
+    body: 'Managing daily medications is stressful for elderly individuals, especially those dealing with memory difficulties. Phone reminders ring, but they do not guarantee that pills were actually taken. Family members who live away worry because they cannot easily verify if their loved ones took their morning or evening doses.',
     challenges: [
       {
-        title: 'Schedule and pill are separate',
-        body: 'A phone reminder alerts the patient, but offers no physical confirmation that a tablet was actually dispensed from the carousel.',
+        title: 'Forgetting Medication Times',
+        body: 'Elderly patients often forget whether they took their morning pills or afternoon syrup, leading to missed doses or accidental double-dosing.',
       },
       {
-        title: 'Caregivers are remote',
-        body: 'Family members and caregivers have no way to verify adherence or vital trends without constant phone check-ins or manual logging.',
+        title: 'Remote Family Worry',
+        body: 'Family members and caregivers living separately have no reliable way to verify if medication was taken without making repeated phone calls throughout the day.',
       },
       {
-        title: 'Vital readings live in silos',
-        body: 'Oxygen saturation and pulse readings are taken intermittently on standalone gadgets, remembered for an hour, but never systematically recorded.',
+        title: 'Scattered Health Measurements',
+        body: 'Vital measurements like pulse and oxygen levels are usually measured with standalone finger clips and quickly forgotten instead of being tracked over time.',
       },
       {
-        title: 'Complex home IoT setups',
-        body: 'Conventional local-network gadgets demand static IPs, port forwarding, or Bluetooth pairing that non-technical families cannot debug.',
+        title: 'Complicated Device Setup',
+        body: 'Many smart devices require complex Bluetooth pairing or local Wi-Fi setup that elderly patients find intimidating and difficult to manage.',
       },
     ],
   },
   principles: [
     {
-      title: 'Never claim a status that was not proven',
-      body: 'A device is displayed as Connected only while its last heartbeat is under 35 seconds old. Otherwise, the status card switches to Offline and turns red.',
+      title: 'Physical Confirmation Over Simple Reminders',
+      body: 'The system only marks a dose as dispensed after the physical motor has actually turned and dropped the medicine into the collection cup.',
     },
     {
-      title: 'Make state readable at a glance',
-      body: 'Every slot uses unambiguous semantic color: Grey (unset), Orange (uploaded & waiting in cloud), Green (dispensed). Vitals carry a plain-language status word next to the number.',
+      title: 'Clear Colors Anyone Can Understand',
+      body: 'Medicine slots use simple visual indicators: Grey means unset, Orange means scheduled and saved, and Green confirms the dose was successfully dispensed.',
     },
     {
-      title: 'Remote first, no pairing',
-      body: 'All commands, schedules, and readings travel through Firebase Realtime Database. The app works from any cellular or Wi-Fi network with zero local-network pairing.',
+      title: 'Works from Anywhere Without Complicated Setup',
+      body: 'All schedules and health readings sync securely through cloud database connection. Caregivers can check in from any phone without requiring Bluetooth pairing.',
     },
   ],
   architecture: {
     diagramSrc: '/assets/medisync/screens/page05.png',
     summary:
-      'Firebase Realtime Database serves as the decoupled single source of truth between the two ESP32 microcontrollers and the React Native mobile app. Nothing talks directly over the local network.',
+      'MediSync connects the physical dispenser machine and health sensors directly to the caregiver mobile app through a secure cloud database, so updates happen in real time from anywhere.',
     nodes: [
       {
-        title: 'Dispenser Node (ESP32)',
-        role: 'Physical Dispensing & Clock',
-        tech: ['ESP32-WROOM-32', 'Stepper Carousel', 'Peristaltic Pump', 'NTP Clock'],
+        title: 'Pill & Syrup Dispenser Box',
+        role: 'Physical Dispensing Machine',
+        tech: ['ESP32 Microcontroller', 'Stepper Carousel', 'Liquid Pump', 'Digital Clock'],
         details:
-          'Rotates carousel to drop tablets at scheduled hour/minute. Drives peristaltic pump for calibrated liquid volume (0.5–15 ml). Maintains synchronized NTP time and writes status heartbeats.',
+          'Rotates an internal pill wheel to drop tablets at scheduled times. Runs a precision pump to pour exact syrup quantities (0.5 to 15 ml) and syncs dispensing events with the cloud.',
       },
       {
-        title: 'Vitals Node (ESP32)',
-        role: 'Biometric Acquisition',
-        tech: ['ESP32-WROOM-32', 'MAX30102 Oximeter', 'AD8232 ECG Front-End'],
+        title: 'Health Monitoring Station',
+        role: 'Pulse & Blood Oxygen Readings',
+        tech: ['ESP32 Microcontroller', 'SpO₂ Sensor', 'Heart Rate Sensor', 'OLED Screen'],
         details:
-          'Listens for trigger mode set by app. Executes high-frequency sampling for SpO₂ and ECG/heart-rate, packages readings with status words, and pushes records to the cloud.',
+          'Reads the patient’s pulse and blood oxygen percentage when a finger is placed on the sensor, showing numbers immediately on the physical screen and sending them to the app.',
       },
       {
-        title: 'Firebase Realtime Database',
-        role: 'Decoupled Cloud Contract',
-        tech: ['WebSockets', 'JSON Realtime DB', 'Timestamp Indexing'],
+        title: 'Cloud Database (Firebase)',
+        role: 'Real-Time Communication Bridge',
+        tech: ['Realtime Cloud DB', 'Secure Connection', 'Instant Synchronization'],
         details:
-          'Holds paths: dispenser/status, slots/0..4, syrupSlots/0..4, vitals/status, vitals/current_mode, vitals/spo2, and vitals/ecg. Ensures hardware and app evolve without blocking each other.',
+          'Safely stores medication times, dispensing logs, and health readings. Ensures that changes made in the mobile app immediately reach the physical machine.',
       },
       {
-        title: 'Mobile App (React Native)',
-        role: 'Caregiver Command Center',
-        tech: ['React Native 0.81', 'Expo SDK 54', 'onValue() Listeners', 'AsyncStorage'],
+        title: 'Mobile App (Caregiver App)',
+        role: 'Scheduling & Vitals Dashboard',
+        tech: ['React Native', 'Real-Time Sync', 'Local Storage'],
         details:
-          'Subscribes to real-time database paths. Evaluates the 35s sliding heartbeat window, handles dosage editing with save cooldowns, and visualizes historical vital trends.',
+          'Allows caregivers to set pill and syrup times, check whether the physical machine is currently connected, and review recent heart rate and oxygen readings.',
       },
     ],
   },
   screenshotGroups: [
     {
       id: 'home-overview',
-      title: 'Group 1 — Home & Device Overview',
+      title: 'Group 1 — Home & Machine Overview',
       description:
-        'The primary command screen provides instant certainty on hardware connectivity before presenting quick-access shortcuts to medicine, syrup, and vital diagnostics.',
+        'The main home screen immediately shows whether the dispenser machine is powered on and connected, followed by quick buttons for medicine, syrup, and health checks.',
       screens: [
         {
           src: '/assets/medisync/screens/01_home_checking.png',
           alt: 'MediSync Home screen — checking connection state',
-          title: 'Checking Connection State',
+          title: 'Checking Machine Connection',
           description:
-            'Initial launch state comparing local device timestamp against the last recorded ESP32 heartbeat to ensure link freshness.',
+            'Shows an initial checking state verifying that the physical machine is powered on and communicating properly before showing controls.',
         },
         {
           src: '/assets/medisync/screens/02_home_connected.png',
           alt: 'MediSync Home screen — connected state with module shortcuts',
           title: 'Connected Dashboard',
           description:
-            'Real-time dashboard showing validated online status, direct navigation cards to dispenser modules, and instant vitals telemetry shortcuts.',
+            'Green confirmation badge showing the machine is online, with clear cards to manage pill slots, syrup schedules, and health vitals.',
         },
       ],
     },
     {
       id: 'medicine-dispensing',
-      title: 'Group 2 — Medicine Dispensing',
+      title: 'Group 2 — Tablet Dispensing Schedules',
       description:
-        'Five independent tablet slots mapped directly to the physical stepper carousel with automated status progression and refill warnings.',
+        'Five scheduled tablet slots mapped directly to the physical rotating carousel inside the dispenser box.',
       screens: [
         {
           src: '/assets/medisync/screens/03_medicine_slots.png',
           alt: 'MediSync Medicine Slots screen showing 5 timed slots and dispensed tracking',
           title: 'Medicine Slots Interface',
           description:
-            'Five tablet slots with independent daily schedules. Color-coded states: Grey (unset), Orange (saved to cloud), Green (dispensed). Automatically triggers "REFILL REQUIRED" when carousel completes 5 cycles.',
+            'Shows five tablet slots with independent schedules. Color-coded states: Grey (unset), Orange (saved to cloud), and Green (dispensed). Displays a clear "REFILL REQUIRED" notice when all 5 slots are emptied.',
         },
       ],
     },
     {
       id: 'syrup-dispensing',
-      title: 'Group 3 — Syrup Dispensing',
+      title: 'Group 3 — Liquid Syrup Dispensing',
       description:
-        'Liquid medication channels calibrated to a precision peristaltic pump, enabling exact volume dispensing without manual measuring cups.',
+        'Liquid medicine channels calibrated with the physical pump, pouring exact amounts without needing manual measuring cups.',
       screens: [
         {
           src: '/assets/medisync/screens/04_syrup_slots.png',
           alt: 'MediSync Syrup Slots screen with time and volume per slot',
           title: 'Syrup Schedule Overview',
           description:
-            'Five liquid dosage channels displaying programmed delivery time and calibrated volume per slot.',
+            'Five syrup channels displaying scheduled dispensing times and volume amounts set for each dose.',
         },
         {
           src: '/assets/medisync/screens/05_syrup_volume_picker.png',
           alt: 'MediSync Syrup Volume Picker modal with 0.5 to 15 ml selector',
-          title: 'Syrup Volume Calibration Modal',
+          title: 'Syrup Volume Selector',
           description:
-            'Centered one-tap volume picker allowing caregivers to set exact liquid medicine dosage from 0.5 ml up to 15 ml with immediate cloud sync.',
+            'Simple popup allowing caregivers to select the exact syrup volume (from 0.5 ml up to 15 ml) with immediate sync to the physical pump.',
         },
       ],
     },
     {
       id: 'vital-monitoring',
-      title: 'Group 4 — Vital Monitoring',
+      title: 'Group 4 — Health Vitals Monitoring',
       description:
-        'Remote biometric station controlled on demand through the mobile app. The smartphone never measures anything itself — it commands the hardware node and displays clinician-friendly context.',
+        'Health tracking screen showing measurements taken by the physical sensors, organized in clear, easy-to-read cards.',
       screens: [
         {
           src: '/assets/medisync/screens/06_heart_rate_stress.png',
           alt: 'MediSync Heart Rate & Stress monitoring screen with BPM and history',
-          title: 'Heart Rate & Stress Tracking',
+          title: 'Heart Rate & Pulse History',
           description:
-            'On-demand ECG/pulse analysis showing live BPM, historical log (capped at 30 readings, newest first), and computed stress assessment.',
+            'Displays heart rate in beats per minute (BPM) alongside a history log of recent readings so family members can see general trends.',
         },
         {
           src: '/assets/medisync/screens/07_spo2_monitoring.png',
           alt: 'MediSync SpO2 monitoring screen with percentage and status badge',
-          title: 'SpO₂ Blood Oxygen Monitoring',
+          title: 'Blood Oxygen (SpO₂) Monitoring',
           description:
-            'Displays percentage oxygen saturation accompanied by clinical status words ("Normal", "Low", "Seek care") and a "Reset Sensor" button to re-calibrate against ambient light or skin resistance noise.',
+            'Shows blood oxygen percentage accompanied by clear plain-language status badges ("Normal", "Low", "Seek care") and a sensor reset button.',
         },
       ],
     },
   ],
   technicalDecisions: [
     {
-      topic: 'Is the device really online?',
-      problem: 'A boolean flag set once becomes stale if power or Wi-Fi cuts out abruptly.',
+      topic: 'Confirming if the Machine is Really Online',
+      problem: 'If a smart device loses power or Wi-Fi unexpectedly, an app might still show it as connected.',
       solution:
-        'Compare the last recorded heartbeat to current time: under 35s is displayed as Connected. Checked every 3s and instantly upon any fresh vitals heartbeat.',
+        'The app checks if the physical dispenser sent an electronic heartbeat within the last 35 seconds. If not, it turns red and alerts the user that the device is offline.',
     },
     {
-      topic: 'Edits snapping back',
-      problem:
-        'The live onValue() listener could overwrite local slot edits before the cloud confirmed the write.',
+      topic: 'Preventing Accidental Schedule Overwrites',
+      problem: 'When a user edits a medicine time, rapid cloud updates could sometimes revert changes before saving.',
       solution:
-        'Enforced a 5-second save cooldown. The status badge displays an orange "Save" state, then cleanly settles to "Uploaded".',
+        'Added a short 5-second save confirmation that displays an orange "Saving" badge before confirming the schedule is safely stored.',
     },
     {
-      topic: 'Showing the correct time',
-      problem: 'Microcontroller hardware clocks and smartphone clocks frequently drift.',
+      topic: 'Accurate Clock Timing for Doses',
+      problem: 'If phone and microcontroller clocks differ slightly, medication could be dispensed at the wrong minute.',
       solution:
-        'Synchronize the ESP32 via NTP and display hardware clock time. The mobile app ticks locally each second from the last sync.',
+        'The physical dispenser synchronizes its internal clock with accurate internet time (NTP) so alarms always ring at the exact scheduled minute.',
     },
     {
-      topic: 'Running out of doses',
-      problem: 'Silent empty slots are the most dangerous failure mode in automatic medication dispensing.',
+      topic: 'Notifying Caregivers When Doses Run Out',
+      problem: 'An automated dispenser running empty without notifying anyone could cause patients to miss doses.',
       solution:
-        'When the dispensed count reaches 5, the interface flags "REFILL REQUIRED" and prevents further cycles until a refill command resets the counter on next sync.',
+        'When all 5 physical slots have been dispensed, the app flags a prominent "REFILL REQUIRED" warning until the caregiver refills the machine.',
     },
     {
-      topic: 'Noisy optical sensor readings',
-      problem: 'Pressure, ambient illumination, and cold skin distort photoplethysmography readings.',
+      topic: 'Reliable Pulse & Oxygen Sensor Readings',
+      problem: 'Cold hands, movement, or loose finger placement can temporarily affect optical sensor readings.',
       solution:
-        'Added an in-app "Reset Sensor" command to reboot the optical baseline, and paired every reading with a contextual status word instead of an isolated number.',
+        'Added an on-screen "Reset Sensor" button to recalibrate the sensor and paired every number with simple guidance words (like "Normal").',
     },
   ],
   processSections: [
     {
       id: 'enclosure-hardware',
-      heading: 'Hardware Enclosure & Prototype Construction',
-      body: 'The physical device was built inside a custom foam-board enclosure designed to unite two distinct mechanical functions: a rotating stepper carousel for tablets and a peristaltic liquid pump for syrup. The front panel features precision cutouts for a stainless tablet collection cup, a liquid measuring beaker, an OLED display for system status, and a secondary color screen for patient feedback.',
+      heading: 'Physical Hardware Enclosure & Construction',
+      body: 'The physical prototype was constructed as a functional tabletop machine with two integrated dispensing systems: an internal rotating carousel driven by a stepper motor for tablets, and a precision peristaltic pump for liquid syrup. The front panel includes dedicated spaces for a pill collection cup, a syrup beaker, a system status screen, and a patient feedback display.',
       media: {
         type: 'image',
         src: '/assets/medisync/screens/page06.png',
@@ -257,8 +255,8 @@ const ms: ProjectData = {
     },
     {
       id: 'data-model',
-      heading: 'Unified Cloud Data Model',
-      body: 'The entire product operates around a single, lightweight JSON tree in Firebase Realtime Database. Both ESP32 nodes and the React Native app read and write the same paths over secure WebSockets. Heartbeats carry Unix timestamps, while vital records carry both human-readable strings and numeric timestamps for effortless chronological sorting.',
+      heading: 'Cloud Integration Between App & Hardware',
+      body: 'The mobile app and physical dispenser communicate through a secure cloud database. When a caregiver updates a medicine schedule on their phone, the time is transmitted to the physical dispenser. When the patient takes a vital reading or receives a dose, the event is immediately recorded in the app.',
       media: {
         type: 'image',
         src: '/assets/medisync/screens/page10.png',
@@ -278,23 +276,24 @@ const ms: ProjectData = {
   ],
   outcome: {
     done: [
-      'Completed physical prototype and React Native mobile application (v1.0).',
-      'Engineered two independent ESP32 microcontrollers coordinating dispensing and biometrics over Firebase.',
-      'Automated scheduled tablet dispensing across 5 carousel slots and syrup dispensing (0.5–15 ml).',
-      'Remote vitals measurement pipeline capturing SpO₂ and ECG/stress on demand without local network pairing.',
-      'Verified 35-second heartbeat window and 5-second save cooldown eliminating false connection confidence and edit snap-back.',
+      'Built and completed a working physical prototype capable of automated pill and syrup dispensing.',
+      'Designed and developed the companion mobile application for medication scheduling and health tracking.',
+      'Connected and integrated the electronic circuits, microcontrollers, motors, and health sensors.',
+      'Programmed the motor control logic to rotate the pill wheel and pump exact syrup volumes (0.5 to 15 ml).',
+      'Established cloud synchronization allowing remote caregivers to schedule doses and view health data.',
     ],
     honestLimits: [
-      'A prototype. Biometric sensors are intended for demonstration and home monitoring, not certified medical-grade diagnosis.',
-      'No multi-user authentication accounts or native mobile push notifications in v1.0.',
+      'This project was built as a functional student mini project prototype; the health sensors are for demonstration and monitoring, not certified medical diagnostic instruments.',
+      'The physical housing was handcrafted as a working proof-of-concept prototype rather than a mass-production plastic enclosure.',
     ],
     nextSteps: [
-      'Improved medication scheduling and tracking experience with clearer reminders and visual status indicators.',
-      'User authentication with dedicated login and sign-up screens.',
-      'Historical health data tracking and downloadable PDF reports.',
+      'Design an injection-molded plastic enclosure suitable for commercial home use.',
+      'Add sound and voice reminders directly on the physical dispenser box.',
+      'Enable multiple caregiver accounts so several family members can stay informed.',
+      'Add downloadable summary reports that can be shared with healthcare providers.',
     ],
     takeaway:
-      "Designing MediSync taught me that a good interface is more than displaying information. It's about helping users understand what's happening, know what action to take, and feel confident using the product.",
+      'Developing MediSync as a mini project was an invaluable experience. It showed me how to take a project from a real problem to an actual physical product—combining user-friendly mobile app design with hands-on electronics, motor control, and hardware integration.',
   },
 };
 
