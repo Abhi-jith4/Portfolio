@@ -7,7 +7,7 @@ export function About() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] dark:bg-[#0A0A0A] sm:bg-[#FAF9F6] sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300 relative overflow-hidden">
+    <div className="min-h-screen bg-[#FAF9F6] dark:bg-[#0A0A0A] sm:bg-[#FAF9F6] sm:dark:bg-neutral-950 px-3.5 pt-[88px] pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300 relative overflow-hidden">
       {/* Mobile subtle top radial glow (Perry Wang inspired), strictly dark-mode only on mobile */}
       <div
         className="hidden dark:block sm:dark:hidden pointer-events-none fixed inset-0 z-0 overflow-hidden"
@@ -19,7 +19,7 @@ export function About() {
       {/* Main Content:
           - MOBILE: Rounded inset container card with pure white surface in light mode (bg-white border-black/[0.06] shadow-sm), dark #171717 surface in dark mode
           - DESKTOP: Direct on page background (sm:bg-transparent sm:border-none sm:shadow-none sm:rounded-none), preserving exact original layout */}
-      <main className="relative z-10 max-w-6xl mx-auto bg-white dark:bg-[#171717] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-neutral-800/80 sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
+      <main className="relative z-10 max-w-6xl mx-auto bg-white dark:bg-[#171717] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-neutral-800/80 sm:border-none shadow-sm sm:shadow-none px-6 pt-[44px] pb-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
 
           {/* 2. Profile Image (clean circular, enters smoothly shortly after headline) */}
