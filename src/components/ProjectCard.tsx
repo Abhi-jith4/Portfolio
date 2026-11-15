@@ -64,11 +64,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <motion.div
       data-project-card="true"
-      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-20px' }}
       transition={{
-        delay: shouldReduceMotion ? 0 : 0.35 + index * 0.08,
-        duration: shouldReduceMotion ? 0 : 0.65,
+        delay: shouldReduceMotion ? 0 : (index < 2 ? 0.52 + index * 0.1 : 0.12 + (index % 2) * 0.1),
+        duration: shouldReduceMotion ? 0 : 0.45,
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={handleCardClick}

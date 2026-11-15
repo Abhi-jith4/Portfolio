@@ -5,24 +5,8 @@ import { projects } from '../content';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-function isMobile() {
-  if (typeof window === 'undefined') return false;
-  return window.innerWidth < 640;
-}
-
 export function Home() {
   const shouldReduceMotion = useReducedMotion();
-  const mobile = isMobile();
-
-  const makeFade = (delay: number, extraDuration?: number) => ({
-    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: mobile ? 10 : 16 },
-    animate: { opacity: 1, y: 0 },
-    transition: {
-      duration: shouldReduceMotion ? 0 : (extraDuration ?? (mobile ? 0.5 : 0.65)),
-      delay: shouldReduceMotion ? 0 : (mobile ? delay * 0.7 : delay),
-      ease: EASE,
-    },
-  });
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] sm:bg-white dark:bg-[#0A0A0A] sm:dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden">
@@ -34,25 +18,51 @@ export function Home() {
         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[360px] bg-[radial-gradient(ellipse_100%_350px_at_50%_0%,rgba(36,36,36,0.8)_0%,rgba(23,23,23,0.5)_50%,transparent_100%)] blur-2xl" />
       </div>
 
-      {/* Main Content: Direct on page background on mobile and desktop, standard layout */}
+      {/* Main Content: Direct on page background on mobile and desktop */}
       <main className="relative z-10 max-w-5xl mx-auto px-6 pt-24 sm:pt-32 pb-16">
-        {/* Hero */}
+        {/* Hero: Sequential, lightweight entrance sequence inspired by Perry Wang */}
         <div className="mb-14 sm:mb-20">
-          {/* Prominent Name & Professional Designation */}
+          {/* 1. Name: Enters first with subtle fade-in and slight upward movement */}
           <motion.div
-            {...makeFade(0.05)}
-            className="flex flex-col mb-6 overflow-visible"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.4,
+              delay: shouldReduceMotion ? 0 : 0.05,
+              ease: EASE,
+            }}
+            className="overflow-visible"
           >
             <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight">
               Abhijith V S
             </span>
-            <span className="text-sm sm:text-base md:text-lg font-medium text-neutral-500 dark:text-neutral-400 mt-1">
+          </motion.div>
+
+          {/* 2. Designation: Appears shortly after name with small stagger */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.4,
+              delay: shouldReduceMotion ? 0 : 0.16,
+              ease: EASE,
+            }}
+            className="overflow-visible mt-1 mb-6"
+          >
+            <span className="text-sm sm:text-base md:text-lg font-medium text-neutral-500 dark:text-neutral-400">
               Product Designer
             </span>
           </motion.div>
 
+          {/* 3. Engineering & design tagline: Appears next in sequence */}
           <motion.h1
-            {...makeFade(0.14, mobile ? 0.55 : 0.72)}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.48,
+              delay: shouldReduceMotion ? 0 : 0.28,
+              ease: EASE,
+            }}
             className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.18] sm:leading-[1.16] text-neutral-900 dark:text-white mb-6 overflow-visible pb-1.5 headline-depth"
           >
             I blend engineering
@@ -62,36 +72,49 @@ export function Home() {
             <span className="highlight-serif">products people love.</span>
           </motion.h1>
 
+          {/* 4. Introductory description text: Appears last */}
           <motion.p
-            {...makeFade(0.26)}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.42,
+              delay: shouldReduceMotion ? 0 : 0.4,
+              ease: EASE,
+            }}
             className="text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed overflow-visible"
           >
             Hi, I'm Abhijith. I enjoy exploring ideas, solving problems and bringing meaningful experiences to life.
           </motion.p>
 
-          {/* Mobile Copy Email Button (Dousan Miao mobile layout) */}
+          {/* 5. Mobile Copy Email Action */}
           <motion.div
-            {...makeFade(0.34)}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.4,
+              delay: shouldReduceMotion ? 0 : 0.48,
+              ease: EASE,
+            }}
             className="flex sm:hidden mt-6 overflow-visible"
           >
             <CopyEmail />
           </motion.div>
         </div>
 
-        {/* Project grid */}
+        {/* Project grid: Cards animate individually with progressive stagger */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </div>
 
-        {/* Homepage Footer with LinkedIn icon and Antigravity credit */}
+        {/* Homepage Footer: Subtle viewport-based reveal */}
         <motion.footer
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
           transition={{
-            duration: shouldReduceMotion ? 0 : 0.8,
-            delay: shouldReduceMotion ? 0 : (mobile ? 0.7 : 1.0),
+            duration: shouldReduceMotion ? 0 : 0.55,
             ease: EASE,
           }}
           className="mt-12 sm:mt-16 pb-4 flex flex-col items-center justify-center gap-3 text-center"

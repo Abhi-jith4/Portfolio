@@ -23,32 +23,22 @@ export function PageTransition({ children, locationKey }: PageTransitionProps) {
     <AnimatePresence mode="wait" initial={true}>
       <motion.div
         key={locationKey}
-        initial={
-          shouldReduceMotion
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 24 }
-        }
+        initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
         animate={{
           opacity: 1,
-          y: 0,
           transition: {
-            duration: shouldReduceMotion ? 0 : 0.6,
+            duration: shouldReduceMotion ? 0 : 0.32,
             ease: EASING,
           },
         }}
-        exit={
-          shouldReduceMotion
-            ? { opacity: 0, y: 0 }
-            : {
-                opacity: 0,
-                y: -20,
-                transition: {
-                  duration: 0.22,
-                  ease: EASING,
-                },
-              }
-        }
-        className="w-full min-h-screen will-change-[opacity,transform]"
+        exit={{
+          opacity: 0,
+          transition: {
+            duration: shouldReduceMotion ? 0 : 0.2,
+            ease: EASING,
+          },
+        }}
+        className="w-full min-h-screen"
       >
         {children}
       </motion.div>
