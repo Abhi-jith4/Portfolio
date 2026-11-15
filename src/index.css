@@ -201,3 +201,13 @@ body, main, .glass-pill, .glass-button {
     will-change: auto;
   }
 }
+
+/* Prevent sticky hover states on touch devices without a fine hover pointer */
+@media (hover: none) and (pointer: coarse) {
+  [data-project-card]:hover {
+    transform: none !important;
+  }
+  [data-project-card] .group-hover\:opacity-100 {
+    opacity: 0 !important;
+  }
+}

@@ -17,8 +17,8 @@ const PROJECT_ACCENTS: Record<string, { glow: string; border: string; label: str
     label: 'IoT Mobile App',
   },
   motorex: {
-    glow: 'rgba(16, 185, 129, 0.22)', // Subtle green glow
-    border: 'rgba(16, 185, 129, 0.55)',
+    glow: 'rgba(229, 57, 53, 0.20)', // Subtle red ambient glow matching dashboard interface
+    border: '#E53935', // Refined red border (~#E53935)
     label: 'Autonomous HMI',
   },
   motorage: {
@@ -85,14 +85,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     >
       {/* ── Ambient Project-Specific Hover Glow (Perry Wang style) ── */}
       <div
-        className="absolute -inset-1 rounded-[24px] sm:rounded-[26px] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 ease-out pointer-events-none -z-10"
+        className="absolute -inset-1 rounded-[24px] sm:rounded-[26px] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 ease-out pointer-events-none -z-10"
         style={{ background: accentInfo.glow }}
         aria-hidden="true"
       />
 
       {/* Subtle border highlight on hover */}
       <div
-        className="absolute inset-0 rounded-[20px] sm:rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out pointer-events-none"
+        className="absolute inset-0 rounded-[20px] sm:rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out pointer-events-none"
         style={{
           boxShadow: `inset 0 0 0 1px ${accentInfo.border}`,
         }}
