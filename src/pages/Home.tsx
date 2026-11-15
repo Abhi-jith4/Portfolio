@@ -25,9 +25,17 @@ export function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-[#111111] sm:bg-white dark:bg-[#111111] sm:dark:bg-neutral-950 transition-colors duration-300">
+    <div className="min-h-screen bg-[#0A0A0A] sm:bg-white dark:bg-[#0A0A0A] sm:dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden">
+      {/* Mobile subtle top radial glow (Perry Wang inspired), strictly hidden on desktop */}
+      <div
+        className="sm:hidden pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[360px] bg-[radial-gradient(ellipse_100%_350px_at_50%_0%,rgba(36,36,36,0.8)_0%,rgba(23,23,23,0.5)_50%,transparent_100%)] blur-2xl" />
+      </div>
+
       {/* Main Content: Direct on page background on mobile and desktop, standard layout */}
-      <main className="max-w-5xl mx-auto px-6 pt-24 sm:pt-32 pb-16">
+      <main className="relative z-10 max-w-5xl mx-auto px-6 pt-24 sm:pt-32 pb-16">
         {/* Hero */}
         <div className="mb-14 sm:mb-20">
           {/* Prominent Name & Professional Designation */}

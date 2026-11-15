@@ -35,11 +35,17 @@ export function About() {
   });
 
   return (
-    <div className="min-h-screen bg-[#111111] dark:bg-[#111111] sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
-      {/* Main Content:
-          - MOBILE: Rounded inset container card with dark #1B1B1B surface & #303030 border
-          - DESKTOP: Direct on page background (sm:bg-transparent sm:border-none sm:shadow-none sm:rounded-none), exactly as the original layout */}
-      <main className="max-w-6xl mx-auto bg-white dark:bg-[#1B1B1B] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-[#303030] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
+    <div className="min-h-screen bg-[#0A0A0A] dark:bg-[#0A0A0A] sm:bg-white sm:dark:bg-neutral-950 transition-colors duration-300 relative overflow-hidden">
+      {/* Mobile subtle top radial glow (Perry Wang inspired), strictly hidden on desktop */}
+      <div
+        className="sm:hidden pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[360px] bg-[radial-gradient(ellipse_100%_350px_at_50%_0%,rgba(36,36,36,0.8)_0%,rgba(23,23,23,0.5)_50%,transparent_100%)] blur-2xl" />
+      </div>
+
+      {/* Main Content: Direct on page background on both mobile and desktop (no contrasting card), consistent across Work & Info */}
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
 
           {/* Profile Image (left-aligned on mobile, centered on desktop, clean circular) */}

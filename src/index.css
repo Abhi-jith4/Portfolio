@@ -17,7 +17,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
+    @apply bg-white dark:bg-[#0A0A0A] sm:dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
   }
@@ -147,27 +147,34 @@
 
   /* Refined Dousan Miao style View Project cursor bubble */
   .cursor-bubble-glass {
-    background: rgba(240, 239, 236, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: radial-gradient(130% 130% at 35% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 242, 0.85) 55%, rgba(230, 229, 225, 0.75) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     box-shadow:
-      0 12px 36px -4px rgba(0, 0, 0, 0.12),
+      0 14px 36px -4px rgba(0, 0, 0, 0.12),
       0 4px 12px -2px rgba(0, 0, 0, 0.06),
-      inset 0 1px 1.5px 0 rgba(255, 255, 255, 1);
+      inset 0 1px 2px 0 rgba(255, 255, 255, 1);
     color: #171717;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   }
 
   .dark .cursor-bubble-glass {
-    background: rgba(26, 26, 26, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: radial-gradient(130% 130% at 35% 25%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 45%, rgba(0, 0, 0, 0.4) 100%), rgba(22, 22, 22, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     box-shadow:
-      0 16px 40px 0 rgba(0, 0, 0, 0.6),
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
-      inset 0 -1px 2px 0 rgba(0, 0, 0, 0.45);
+      0 16px 40px -4px rgba(0, 0, 0, 0.7),
+      0 4px 12px -2px rgba(0, 0, 0, 0.4),
+      inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 2px 0 rgba(0, 0, 0, 0.5);
     color: #f5f5f5;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  /* Completely suppress native arrow cursor across project card and child elements */
+  [data-project-card],
+  [data-project-card] * {
+    cursor: none !important;
   }
 }
 

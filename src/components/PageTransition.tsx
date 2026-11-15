@@ -20,19 +20,19 @@ export function PageTransition({ children, locationKey }: PageTransitionProps) {
   }, [locationKey]);
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait" initial={true}>
       <motion.div
         key={locationKey}
         initial={
           shouldReduceMotion
             ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 32 }
+            : { opacity: 0, y: 24 }
         }
         animate={{
           opacity: 1,
           y: 0,
           transition: {
-            duration: shouldReduceMotion ? 0 : 0.58,
+            duration: shouldReduceMotion ? 0 : 0.6,
             ease: EASING,
           },
         }}
@@ -41,7 +41,7 @@ export function PageTransition({ children, locationKey }: PageTransitionProps) {
             ? { opacity: 0, y: 0 }
             : {
                 opacity: 0,
-                y: 16,
+                y: -20,
                 transition: {
                   duration: 0.22,
                   ease: EASING,

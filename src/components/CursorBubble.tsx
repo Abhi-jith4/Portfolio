@@ -72,13 +72,13 @@ export function CursorBubble() {
         }
         setIsHovered(true);
       } else {
-        // 80ms grace timeout: allows the bubble to smoothly extend beyond card boundaries
-        // and glide across gaps without flickering
+        // 120ms grace timeout: allows the bubble to smoothly extend beyond card boundaries
+        // and glide across gaps without abrupt popping
         if (!hideTimer.current) {
           hideTimer.current = window.setTimeout(() => {
             setIsHovered(false);
             hideTimer.current = null;
-          }, 80);
+          }, 120);
         }
       }
     };
