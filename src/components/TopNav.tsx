@@ -4,6 +4,8 @@ import { Sun, Moon } from 'lucide-react';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useRef, useEffect, useState } from 'react';
 
+const INDICATOR_WIDTH = 22; // px
+
 export function TopNav() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,17 +18,32 @@ export function TopNav() {
   const workBtnRef = useRef<HTMLButtonElement>(null);
   const infoBtnRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const [indicatorX, setIndicatorX] = useState<number | null>(null);
+  const [indicatorLeft, setIndicatorLeft] = useState<number | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const btn = isAbout ? infoBtnRef.current : workBtnRef.current;
-    const nav = navRef.current;
-    if (!btn || !nav) return;
-    const btnRect = btn.getBoundingClientRect();
-    const navRect = nav.getBoundingClientRect();
-    // Center of button relative to nav
-    const x = btnRect.left + btnRect.width / 2 - navRect.left;
-    setIndicatorX(x);
+    const updatePosition = () => {
+      const btn = isAbout ? infoBtnRef.current : workBtnRef.current;
+      const nav = navRef.current;
+      if (!btn || !nav) return;
+
+      const btnRect = btn.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+
+      // Mathematically calculate the exact left position so the 22px indicator
+      // is precisely centered over the active button, regardless of screen size or zoom
+      const buttonCenter = btnRect.left + btnRect.width / 2 - navRect.left;
+      const left = buttonCenter - INDICATOR_WIDTH / 2;
+
+      setIndicatorLeft(left);
+      setIsReady(true);
+    };
+
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    document.fonts?.ready?.then(updatePosition);
+
+    return () => window.removeEventListener('resize', updatePosition);
   }, [isAbout, location.pathname]);
 
   if (isProject) return null;
@@ -40,20 +57,24 @@ export function TopNav() {
         transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="pointer-events-auto relative flex items-center gap-1 p-1 rounded-full glass-pill shadow-lg shadow-black/5 dark:shadow-black/40 backdrop-blur-xl"
       >
-        {/* Floating indicator above the pill — positioned absolutely within nav */}
-        {indicatorX !== null && (
+        {/* Floating glowing indicator: centered with exact precision directly above active tab */}
+        {indicatorLeft !== null && (
           <motion.span
             aria-hidden="true"
             className="absolute pointer-events-none"
-            style={{ top: -5, left: 0, transform: 'translateX(-50%)' }}
-            animate={{ x: indicatorX }}
+            style={{ top: -5, left: 0, width: INDICATOR_WIDTH }}
+            initial={false}
+            animate={{
+              x: indicatorLeft,
+              opacity: isReady ? 1 : 0,
+            }}
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
-                : { type: 'spring', stiffness: 380, damping: 30, mass: 0.9 }
+                : { type: 'spring', stiffness: 420, damping: 32, mass: 0.8 }
             }
           >
-            <span className="block w-5 h-[2px] rounded-full bg-[#171717]/85 dark:bg-white shadow-[0_0_5px_1px_rgba(0,0,0,0.2)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.7),0_0_2px_rgba(255,255,255,0.95)]" />
+            <span className="block w-full h-[2px] rounded-full bg-[#171717] dark:bg-white shadow-[0_0_5px_1px_rgba(0,0,0,0.25)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.7),0_0_2px_rgba(255,255,255,0.95)] filter dark:drop-shadow-[0_-1px_3px_rgba(255,255,255,0.6)]" />
           </motion.span>
         )}
 

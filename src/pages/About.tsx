@@ -35,13 +35,13 @@ export function About() {
   });
 
   return (
-    <div className="relative min-h-screen bg-[#FAF9F6] dark:bg-[#171717] px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
+    <div className="relative min-h-screen bg-transparent px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
       {/* Subtle Perry Wang inspired atmospheric ambient lighting */}
       <div
         className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(186,210,235,0.12)_0%,rgba(186,210,235,0.03)_40%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(147,197,253,0.06)_0%,rgba(147,197,253,0.015)_45%,transparent_70%)] blur-2xl" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08)_0%,rgba(186,210,235,0.04)_40%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.04)_0%,rgba(147,197,253,0.02)_40%,transparent_70%)] blur-3xl" />
       </div>
 
       <main className="relative z-10 max-w-6xl mx-auto bg-[#F0EFEC] dark:bg-[#202020] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-white/[0.08] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">

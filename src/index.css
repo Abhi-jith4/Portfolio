@@ -17,9 +17,17 @@
   }
 
   body {
-    @apply bg-[#FAF9F6] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F3];
+    @apply text-[#171717] dark:text-[#F5F5F3];
+    background-color: #FAF9F6;
+    background-image: radial-gradient(ellipse 120% 70% at 50% -10%, #FFFFFF 0%, #FAF9F6 50%, #F0EFEC 100%);
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background-color: #171717;
+    background-image: radial-gradient(ellipse 120% 80% at 50% -10%, #252525 0%, #1e1e1e 40%, #171717 80%);
+    background-attachment: fixed;
   }
 
   /* Ensure headings and text descenders (p, g, y, j, q) have full clearance and are never clipped */

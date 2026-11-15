@@ -120,7 +120,7 @@ export function Project() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] dark:bg-[#171717] transition-colors duration-300">
+    <div className="min-h-screen bg-transparent transition-colors duration-300">
       {/* Lightbox for enlarged image previews */}
       <Lightbox image={activeLightbox} onClose={() => setActiveLightbox(null)} />
 
