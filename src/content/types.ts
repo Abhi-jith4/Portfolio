@@ -130,6 +130,12 @@ export interface ImplementationData {
   items: ImplementationItem[];
 }
 
+export interface ProjectExternalLink {
+  label: string;
+  url: string;
+  icon: 'figma' | 'github';
+}
+
 export interface ProjectData {
   slug: string;
   title: string;
@@ -140,6 +146,7 @@ export interface ProjectData {
   year: string;
   coverMedia: { type: 'video' | 'image'; src: string; poster?: string };
   physicalPhoto?: { src: string; alt: string; caption: string };
+  externalLinks?: ProjectExternalLink[];
   overview: string;
   myRole: string;
   myRoleContributions?: string[];

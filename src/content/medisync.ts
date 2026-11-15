@@ -14,6 +14,13 @@ const ms: ProjectData = {
     alt: 'The physical MediSync prototype — dual-outlet tablet and syrup dispenser with integrated vitals monitoring station',
     caption: 'The physical MediSync prototype — dual-outlet tablet and syrup dispenser with integrated vitals monitoring station',
   },
+  externalLinks: [
+    {
+      label: 'View GitHub Repository',
+      url: 'https://github.com/Abhi-jith4/SmartMed-IoT-System',
+      icon: 'github',
+    },
+  ],
   overview:
     'MediSync pairs a tabletop dispenser for tablets and syrup with a vitals station that reads SpO₂, heart rate and stress. Both report to one mobile app through Firebase. A caregiver can schedule doses, see whether a dose was actually dispensed, and take a reading without being in the room. There is no static IP, port forwarding or Bluetooth pairing anywhere in the setup.',
   myRole:

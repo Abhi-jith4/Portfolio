@@ -10,6 +10,13 @@ const mg: ProjectData = {
   accentBg: '#020B0F',
   year: '2026',
   coverMedia: { type: 'video', src: '/assets/motorage/demo.mp4', poster: '/assets/motorage/poster.jpg' },
+  externalLinks: [
+    {
+      label: 'View GitHub Repository',
+      url: 'https://github.com/Abhi-jith4/electric-vehicle-dashbaord',
+      icon: 'github',
+    },
+  ],
   overview:
     'Team Motorage designed and engineered an all-electric off-road vehicle for SAE eBAJA 2026. Operating in rough terrain, the driver needed a single cockpit interface to track speed, motor conditions, and vehicle vitals at a glance, while allowing engineering team members to diagnose electrical subsystems and contactor states without connecting external diagnostic laptops. Built on a Raspberry Pi 4 with a 1024×600 HDMI touchscreen, the dashboard decodes real-time CAN bus telemetry and delivers high-contrast glanceability under harsh sunlight.',
   myRole: 'UI Design, Embedded UI Development',

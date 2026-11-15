@@ -10,6 +10,13 @@ const mx: ProjectData = {
   accentBg: '#0A0A0A',
   year: '2026',
   coverMedia: { type: 'video', src: '/assets/motorex/demo.mp4', poster: '/assets/motorex/poster.jpg' },
+  externalLinks: [
+    {
+      label: 'View GitHub Repository',
+      url: 'https://github.com/Abhi-jith4/autonomous-vehicle-dashboard',
+      icon: 'github',
+    },
+  ],
   overview:
     'Team Motorex designed and built an autonomous off-road vehicle for SAE BAJA 2026. The operator needed one cockpit interface to monitor real-time vehicle telemetry, input steering angles, and safely switch between autonomous driving modes. Operating on a Raspberry Pi 4 with a 1024×600 7-inch HDMI touchscreen, the dashboard communicates over the vehicle CAN bus with independent Teensy steering, motor controller, and Jetson autonomy nodes.',
   myRole: 'UI Design, Dashboard Development & Testing',

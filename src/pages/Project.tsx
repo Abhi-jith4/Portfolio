@@ -6,6 +6,7 @@ import { projects } from '../content';
 import { SectionNav } from '../components/SectionNav';
 import { VideoPlayer } from '../components/VideoPlayer';
 import { Lightbox } from '../components/Lightbox';
+import { ProjectLinkButton } from '../components/ProjectLinkButton';
 import { useDarkMode } from '../hooks/useDarkMode';
 import type { ProjectData } from '../content/types';
 
@@ -91,6 +92,7 @@ export function Project() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { isDark, toggle } = useDarkMode();
+  const shouldReduceMotion = useReducedMotion();
   const [activeLightbox, setActiveLightbox] = useState<{ src: string; alt: string; caption?: string } | null>(null);
 
   const project = projects.find((p) => p.slug === slug);
@@ -109,7 +111,6 @@ export function Project() {
   const isMotorex = project.slug === 'motorex';
   const isAgriRover = project.slug === 'agrirover';
   const isMotorage = project.slug === 'motorage';
-  const shouldReduceMotion = useReducedMotion();
 
   const handleClose = () => {
     if (typeof document !== 'undefined' && 'startViewTransition' in document && !shouldReduceMotion) {
@@ -348,6 +349,13 @@ export function Project() {
               <p className="text-[17px] text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-2xl">
                 {project.overview}
               </p>
+              {project.externalLinks && project.externalLinks.length > 0 && (
+                <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-3.5">
+                  {project.externalLinks.map((link) => (
+                    <ProjectLinkButton key={link.url} link={link} />
+                  ))}
+                </div>
+              )}
             </section>
 
             {/* ── MY ROLE ── */}

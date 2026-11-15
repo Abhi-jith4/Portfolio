@@ -10,6 +10,18 @@ const ag: ProjectData = {
   accentBg: '#1A0D00',
   year: '2026',
   coverMedia: { type: 'video', src: '/assets/agrirover/demo.mp4', poster: '/assets/agrirover/poster.jpg' },
+  externalLinks: [
+    {
+      label: 'View Figma Design',
+      url: 'https://www.figma.com/design/JNjYHuOmWcMhZ5mUUAVahC/Mobile-App-UX-Redesign?node-id=0-1&t=4UvLZqL8UU7Q7e3Z-0',
+      icon: 'figma',
+    },
+    {
+      label: 'View Interactive Prototype',
+      url: 'https://www.figma.com/proto/JNjYHuOmWcMhZ5mUUAVahC/Mobile-App-UX-Redesign?node-id=26-940&p=f&viewport=1310%2C716%2C0.44&t=GCZqo7VpQRxLe0gr-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=26%3A940&page-id=0%3A1',
+      icon: 'figma',
+    },
+  ],
   overview:
     'AgriRover is an autonomous agricultural robot engineered to harvest ripe tomatoes using a 6-DOF robotic arm and an on-board collection box. Operating in dynamic field environments requires an interface where driving, robotic manipulation, live computer vision, and autonomous missions can be managed quickly and safely. This mobile application unifies all five operational subsystems into a glanceable, thumb-accessible cockpit designed in Figma and validated through code-to-hardware communication testing.',
   myRole: 'UI/UX Design, App Development & Hardware Communication Testing',
