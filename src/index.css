@@ -17,17 +17,9 @@
   }
 
   body {
-    @apply text-[#171717] dark:text-[#F5F5F5];
-    background-color: #F8F7F4;
-    background-image: radial-gradient(ellipse 120% 70% at 50% -10%, #FFFFFF 0%, #F8F7F4 50%, #ECEAE5 100%);
+    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
-  }
-
-  .dark body {
-    background-color: #111111;
-    background-image: radial-gradient(ellipse 120% 80% at 50% -10%, #1a1a1a 0%, #141414 45%, #111111 85%);
-    background-attachment: fixed;
   }
 
   /* Ensure headings and text descenders (p, g, y, j, q) have full clearance and are never clipped */
@@ -51,15 +43,15 @@
 
   /* Glass pill navigation */
   .glass-pill {
-    @apply backdrop-blur-xl bg-[#F0EFEC]/85 dark:bg-[#1B1B1B]/90 border border-black/[0.08] dark:border-[#303030];
+    @apply backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border border-neutral-200/60 dark:border-neutral-700/60;
   }
 
   /* Section scrollspy highlight */
   .nav-item-active {
-    @apply text-[#171717] dark:text-[#F5F5F5] font-medium;
+    @apply text-neutral-900 dark:text-white font-medium;
   }
   .nav-item-muted {
-    @apply text-neutral-400 dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-[#F5F5F5];
+    @apply text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300;
   }
 
   /* Subtle headline shadow & depth (for homepage & about page main headlines) */
@@ -68,7 +60,7 @@
   }
 
   .dark .headline-depth {
-    text-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
   /* Refined Perry Wang serif highlight treatment with softer, lighter silver-to-icy-blue gradient */
@@ -89,18 +81,18 @@
     margin-left: -0.04em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    background: linear-gradient(135deg, #171717 0%, #2b3544 50%, #1e3a8a 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #2563eb 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .dark .highlight-serif {
-    background: linear-gradient(180deg, #FFFFFF 15%, #F5F5F5 40%, #E2E8F0 65%, #C7D2FE 88%, #A5B4FC 100%);
+    background: linear-gradient(180deg, #ffffff 10%, #f8fafc 35%, #e2e8f0 60%, #bae6fd 85%, #93c5fd 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 16px rgba(199, 210, 254, 0.22));
+    filter: drop-shadow(0 0 10px rgba(186, 230, 253, 0.3));
   }
 
   /* Theme-aware Glassmorphic / Neumorphic Pill Button (Dousan Miao style) */
@@ -112,15 +104,15 @@
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* Light theme: warm off-white surface with subtle inner gloss & soft elevation */
-    background: linear-gradient(180deg, rgba(240, 239, 236, 0.96) 0%, rgba(234, 232, 227, 0.88) 100%);
+    /* Light theme: Translucent pearl white with subtle inner gloss & soft elevation */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.88) 100%);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow:
       inset 0 1px 1px 0 rgba(255, 255, 255, 1),
       inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03),
       0 4px 16px -2px rgba(0, 0, 0, 0.08),
       0 1px 3px 0 rgba(0, 0, 0, 0.04);
-    color: #171717;
+    color: #1e293b;
   }
 
   .glass-button:hover {
@@ -133,24 +125,24 @@
   }
 
   .dark .glass-button {
-    /* Dark theme: refined deep charcoal with subtle #303030 border & inner depth */
-    background: linear-gradient(180deg, rgba(34, 34, 34, 0.9) 0%, rgba(26, 26, 26, 0.95) 50%, rgba(20, 20, 20, 0.98) 100%);
-    border: 1px solid #303030;
+    /* Dark theme: Translucent dark smoked glass with silver rim & inner depth */
+    background: linear-gradient(180deg, rgba(38, 38, 38, 0.75) 0%, rgba(23, 23, 23, 0.85) 50%, rgba(10, 10, 10, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow:
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
-      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
-      0 4px 20px -2px rgba(0, 0, 0, 0.6),
-      0 2px 6px 0 rgba(0, 0, 0, 0.4);
-    color: #F5F5F5;
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
+      0 4px 20px -2px rgba(0, 0, 0, 0.7),
+      0 2px 6px 0 rgba(0, 0, 0, 0.5);
+    color: #f1f5f9;
   }
 
   .dark .glass-button:hover {
-    border-color: #444444;
+    border-color: rgba(255, 255, 255, 0.32);
     box-shadow:
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
-      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
-      0 6px 24px -2px rgba(0, 0, 0, 0.75),
-      0 2px 8px 0 rgba(0, 0, 0, 0.5);
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.6),
+      0 6px 24px -2px rgba(0, 0, 0, 0.85),
+      0 2px 8px 0 rgba(0, 0, 0, 0.6);
   }
 
   /* Refined Dousan Miao style View Project cursor bubble */
@@ -173,7 +165,7 @@
       0 16px 40px 0 rgba(0, 0, 0, 0.6),
       inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
       inset 0 -1px 2px 0 rgba(0, 0, 0, 0.45);
-    color: #F5F5F5;
+    color: #f5f5f5;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }

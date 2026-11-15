@@ -35,20 +35,14 @@ export function About() {
   });
 
   return (
-    <div className="relative min-h-screen bg-transparent px-3.5 pt-20 pb-12 sm:px-6 sm:pt-28 sm:pb-24 transition-colors duration-300">
-      {/* Subtle atmospheric ambient lighting over #111111 charcoal depth */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08)_0%,rgba(186,210,235,0.04)_40%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.04)_0%,rgba(147,197,253,0.015)_40%,transparent_70%)] blur-3xl" />
-      </div>
-
-      {/* Main #1B1B1B Info Surface with #303030 Border */}
-      <main className="relative z-10 max-w-4xl mx-auto bg-[#F0EFEC] dark:bg-[#1B1B1B] rounded-[28px] border border-black/[0.06] dark:border-[#303030] shadow-xl shadow-black/5 dark:shadow-black/50 px-6 sm:px-14 py-12 sm:py-16 transition-colors duration-300">
+    <div className="min-h-screen bg-[#111111] dark:bg-[#111111] sm:bg-white sm:dark:bg-neutral-950 px-3.5 pt-20 pb-12 sm:px-0 sm:pt-0 sm:pb-0 transition-colors duration-300">
+      {/* Main Content:
+          - MOBILE: Rounded inset container card with dark #1B1B1B surface & #303030 border
+          - DESKTOP: Direct on page background (sm:bg-transparent sm:border-none sm:shadow-none sm:rounded-none), exactly as the original layout */}
+      <main className="max-w-6xl mx-auto bg-white dark:bg-[#1B1B1B] sm:bg-transparent sm:dark:bg-transparent rounded-[26px] sm:rounded-none border border-black/[0.06] dark:border-[#303030] sm:border-none shadow-sm sm:shadow-none px-6 py-10 sm:px-6 sm:pt-32 sm:pb-24 transition-colors duration-300">
         <div className="flex flex-col items-start sm:items-center">
 
-          {/* Circular Profile Image (clean, no extra outer ring) */}
+          {/* Profile Image (left-aligned on mobile, centered on desktop, clean circular) */}
           <motion.div {...makeImageFade(0.04)} className="mb-7 sm:mb-9">
             <div className="w-[118px] h-[118px] sm:w-44 sm:h-44 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
               <img
@@ -59,18 +53,18 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline (left-aligned on mobile, centered on desktop) */}
           <motion.div
             {...makeFade(0.14, mobile ? 0.52 : 0.68)}
-            className="max-w-3xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible"
+            className="max-w-4xl w-full text-left sm:text-center mb-6 sm:mb-8 overflow-visible"
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-[#171717] dark:text-[#F5F5F5] leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2 headline-depth">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.25] sm:leading-[1.28] overflow-visible pb-1 sm:pb-2 headline-depth">
               I'm passionate about bringing engineering and design together to create products that{' '}
               <span className="highlight-serif">empower people.</span>
             </h1>
           </motion.div>
 
-          {/* Copy Email (desktop only) */}
+          {/* Copy Email Action (hidden on mobile, centered on desktop) */}
           <motion.div
             {...makeFade(0.24)}
             className="hidden sm:flex justify-center mb-12 w-full"
@@ -78,17 +72,18 @@ export function About() {
             <CopyEmail />
           </motion.div>
 
-          {/* Biography */}
+          {/* Biography Container (left-aligned on mobile, centered on desktop) */}
           <motion.div
             {...makeFade(0.32)}
-            className="max-w-2xl w-full text-left sm:text-center overflow-visible"
+            className="max-w-3xl w-full text-left sm:text-center overflow-visible"
           >
-            <div className="flex items-center justify-start sm:justify-center gap-2 mb-4 text-xs font-semibold tracking-widest uppercase text-[#737373] dark:text-[#A3A3A3]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#737373] dark:bg-[#A3A3A3]" aria-hidden="true" />
+            {/* Subtle Section Label: ABOUT ME */}
+            <div className="flex items-center justify-start sm:justify-center gap-2 mb-4 text-xs font-semibold tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-400" aria-hidden="true" />
               <span>ABOUT ME</span>
             </div>
 
-            <div className="space-y-6 text-base sm:text-[17px] text-[#404040] dark:text-[#D4D4D4] leading-[1.85] font-normal">
+            <div className="space-y-6 text-base sm:text-[17px] text-neutral-600 dark:text-neutral-300/90 leading-[1.8]">
               <p>
                 I'm a final-year Electronics and Communication Engineering student at Rajiv Gandhi Institute of Technology, Kottayam, who loves turning complex hardware systems into products people can actually use. I care about the full picture: the circuit, the code, and the screen the user sees.
               </p>

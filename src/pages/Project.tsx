@@ -97,7 +97,7 @@ export function Project() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F7F4] dark:bg-[#111111]">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-neutral-950">
         <p className="text-neutral-500">Project not found.</p>
       </div>
     );
@@ -120,7 +120,7 @@ export function Project() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300">
       {/* Lightbox for enlarged image previews */}
       <Lightbox image={activeLightbox} onClose={() => setActiveLightbox(null)} />
 
