@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { CopyEmail } from '../components/CopyEmail';
+import { asset } from '../utils/asset';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -35,7 +36,7 @@ export function About() {
           >
             <div className="w-[118px] h-[118px] sm:w-44 sm:h-44 rounded-full overflow-hidden transition-transform hover:scale-[1.03] duration-500 ease-out">
               <img
-                src="/assets/about/avatar.png"
+                src={asset('/assets/about/avatar.png')}
                 alt="Abhijith V S"
                 className="w-full h-full object-cover"
               />
